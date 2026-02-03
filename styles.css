@@ -19,14 +19,15 @@
     /* Gradient colors */
     --gradient-primary: linear-gradient(135deg, #A67B5B 0%, #8C6D54 100%);
     --gradient-secondary: linear-gradient(135deg, #C9A88C 0%, #A67B5B 100%);
-    --gradient-accent: linear-gradient(135deg, #8C8C8C 0%, #6D6D6D 100%);
+    --gradient-accent: linear-gradient(135deg, #2D4739 0%, #829460 100%);
     --gradient-dark: linear-gradient(180deg, rgba(166, 123, 91, 0.06) 0%, rgba(140, 109, 84, 0.03) 100%);
 
     /* Accent colors */
     --color-primary: #A67B5B;
     --color-primary-light: #C9A88C;
     --color-secondary: #8C6D54;
-    --color-accent: #8C8C8C;
+    --color-accent: #2D4739;
+    --color-accent-light: #829460;
     --color-success: #7A9D7E;
     --color-argentina-blue: #6B8CA8;
 
@@ -40,7 +41,7 @@
     --space-3xl: 8rem;
 
     /* Typography */
-    --font-family: 'Inter', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
@@ -68,7 +69,7 @@
     --shadow-sm: 0 2px 8px rgba(45, 45, 45, 0.06);
     --shadow-md: 0 4px 20px rgba(45, 45, 45, 0.08);
     --shadow-lg: 0 8px 40px rgba(45, 45, 45, 0.10);
-    --shadow-glow: 0 0 60px rgba(166, 123, 91, 0.15);
+    --shadow-glow: 0 0 60px rgba(45, 71, 57, 0.12);
 }
 
 html {
@@ -141,7 +142,8 @@ button {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
+    background: var(--gradient-accent);
+    box-shadow: 0 6px 30px rgba(45, 71, 57, 0.4);
 }
 
 .btn-secondary {
@@ -151,9 +153,9 @@ button {
 }
 
 .btn-secondary:hover {
-    background: rgba(166, 123, 91, 0.08);
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+    background: rgba(45, 71, 57, 0.08);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
 }
 
 /* ===== NAVIGATION ===== */
@@ -189,7 +191,10 @@ button {
 }
 
 .logo-icon {
-    font-size: 1.5rem;
+    width: 28px;
+    height: 28px;
+    stroke: var(--color-accent);
+    flex-shrink: 0;
 }
 
 .logo-text {
@@ -250,8 +255,11 @@ button {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: calc(var(--space-3xl) + 60px) 0 var(--space-3xl);
+    padding: calc(var(--space-2xl) + 60px) 0 var(--space-2xl);
     overflow: hidden;
+    background-color: var(--color-bg);
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='brick' x='0' y='0' width='120' height='50' patternUnits='userSpaceOnUse'%3E%3Crect x='0' y='0' width='60' height='25' fill='none' stroke='rgba(45,71,57,0.04)' stroke-width='1'/%3E%3Crect x='60' y='0' width='60' height='25' fill='none' stroke='rgba(45,71,57,0.04)' stroke-width='1'/%3E%3Crect x='-30' y='25' width='60' height='25' fill='none' stroke='rgba(45,71,57,0.04)' stroke-width='1'/%3E%3Crect x='30' y='25' width='60' height='25' fill='none' stroke='rgba(45,71,57,0.04)' stroke-width='1'/%3E%3Crect x='90' y='25' width='60' height='25' fill='none' stroke='rgba(45,71,57,0.04)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='120' height='50' fill='url(%23brick)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
 }
 
 .hero-bg-elements {
@@ -348,17 +356,20 @@ button {
     align-items: center;
     gap: var(--space-xs);
     padding: var(--space-xs) var(--space-md);
-    background: rgba(116, 172, 223, 0.15);
-    border: 1px solid rgba(116, 172, 223, 0.3);
+    background: rgba(107, 140, 168, 0.12);
+    border: 1px solid rgba(107, 140, 168, 0.25);
     border-radius: var(--radius-full);
     font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--color-argentina-blue);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-sm);
 }
 
 .badge-icon {
-    font-size: 1rem;
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    flex-shrink: 0;
 }
 
 .hero-title {
@@ -475,7 +486,7 @@ button {
 .product-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     border-radius: var(--radius-xl);
     box-shadow:
