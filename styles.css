@@ -8,27 +8,27 @@
 }
 
 :root {
-    /* Colors - Light Theme */
-    --color-bg: #ffffff;
-    --color-bg-secondary: #f8f9fc;
-    --color-bg-tertiary: #f0f2f7;
-    --color-text: #1a1a2e;
-    --color-text-secondary: #4a4a68;
-    --color-text-muted: #8888a0;
+    /* Colors - Earth Tone Palette */
+    --color-bg: #F5F5F0;
+    --color-bg-secondary: #EAEAE5;
+    --color-bg-tertiary: #E0E0D8;
+    --color-text: #2D2D2D;
+    --color-text-secondary: #5A5A5A;
+    --color-text-muted: #8C8C8C;
 
     /* Gradient colors */
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --gradient-dark: linear-gradient(180deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.04) 100%);
+    --gradient-primary: linear-gradient(135deg, #A67B5B 0%, #8C6D54 100%);
+    --gradient-secondary: linear-gradient(135deg, #C9A88C 0%, #A67B5B 100%);
+    --gradient-accent: linear-gradient(135deg, #8C8C8C 0%, #6D6D6D 100%);
+    --gradient-dark: linear-gradient(180deg, rgba(166, 123, 91, 0.06) 0%, rgba(140, 109, 84, 0.03) 100%);
 
     /* Accent colors */
-    --color-primary: #667eea;
-    --color-primary-light: #5a6fd6;
-    --color-secondary: #764ba2;
-    --color-accent: #00c4cc;
-    --color-success: #10b981;
-    --color-argentina-blue: #4a90c2;
+    --color-primary: #A67B5B;
+    --color-primary-light: #C9A88C;
+    --color-secondary: #8C6D54;
+    --color-accent: #8C8C8C;
+    --color-success: #7A9D7E;
+    --color-argentina-blue: #6B8CA8;
 
     /* Spacing */
     --space-xs: 0.5rem;
@@ -40,7 +40,7 @@
     --space-3xl: 8rem;
 
     /* Typography */
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-family: 'Inter', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
@@ -65,10 +65,10 @@
     --transition-slow: 400ms ease;
 
     /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
-    --shadow-glow: 0 0 60px rgba(102, 126, 234, 0.2);
+    --shadow-sm: 0 2px 8px rgba(45, 45, 45, 0.06);
+    --shadow-md: 0 4px 20px rgba(45, 45, 45, 0.08);
+    --shadow-lg: 0 8px 40px rgba(45, 45, 45, 0.10);
+    --shadow-glow: 0 0 60px rgba(166, 123, 91, 0.15);
 }
 
 html {
@@ -151,7 +151,7 @@ button {
 }
 
 .btn-secondary:hover {
-    background: rgba(102, 126, 234, 0.08);
+    background: rgba(166, 123, 91, 0.08);
     border-color: var(--color-primary);
     color: var(--color-primary);
 }
@@ -164,10 +164,10 @@ button {
     right: 0;
     z-index: 1000;
     padding: var(--space-md) 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(245, 245, 240, 0.9);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(45, 45, 45, 0.08);
     transition: all var(--transition-base);
 }
 
@@ -192,7 +192,12 @@ button {
     font-size: 1.5rem;
 }
 
+.logo-text {
+    font-weight: 400;
+}
+
 .logo-text .highlight {
+    font-weight: 800;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -278,7 +283,7 @@ button {
     background: var(--color-secondary);
     bottom: -100px;
     left: -100px;
-    opacity: 0.2;
+    opacity: 0.12;
     animation-delay: -10s;
 }
 
@@ -288,7 +293,7 @@ button {
     background: var(--color-accent);
     top: 50%;
     left: 50%;
-    opacity: 0.1;
+    opacity: 0.08;
     animation-delay: -5s;
 }
 
@@ -316,8 +321,8 @@ button {
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(102, 126, 234, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(102, 126, 234, 0.06) 1px, transparent 1px);
+        linear-gradient(rgba(166, 123, 91, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(166, 123, 91, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
@@ -435,8 +440,8 @@ button {
     inset: 10%;
     background: var(--gradient-primary);
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.3;
+    filter: blur(60px);
+    opacity: 0.15;
     animation: pulse 4s ease-in-out infinite;
 }
 
@@ -461,10 +466,22 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--gradient-dark);
-    border: 2px dashed rgba(102, 126, 234, 0.3);
+    background: transparent;
+    border: none;
     border-radius: var(--radius-xl);
     overflow: hidden;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--radius-xl);
+    box-shadow:
+        0 8px 32px rgba(45, 45, 45, 0.1),
+        0 2px 8px rgba(45, 45, 45, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .placeholder-inner {
@@ -1121,12 +1138,12 @@ button {
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(245, 245, 240, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: var(--space-lg);
     gap: var(--space-md);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(45, 45, 45, 0.08);
     animation: slideDown 0.3s ease;
 }
 
@@ -1267,9 +1284,11 @@ button {
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: var(--space-3xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-xl);
     margin-bottom: var(--space-xl);
 }
 
@@ -1312,10 +1331,10 @@ button {
 
 .footer-bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding-top: var(--space-xl);
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(45, 45, 45, 0.08);
 }
 
 .copyright {

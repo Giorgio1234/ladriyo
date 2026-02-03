@@ -42,11 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.background = 'rgba(245, 245, 240, 0.98)';
             navbar.style.padding = '0.75rem 0';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            navbar.style.boxShadow = '0 2px 20px rgba(45, 45, 45, 0.08)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+            navbar.style.background = 'rgba(245, 245, 240, 0.9)';
             navbar.style.padding = '1.5rem 0';
             navbar.style.boxShadow = 'none';
         }
