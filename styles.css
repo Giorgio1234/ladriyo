@@ -1173,107 +1173,111 @@ button {
 
 
 
-/* ===== CTA SECTION ===== */
-.cta-section {
+/* ===== IMPACT SECTION - LADRILLAZO ===== */
+.impact-section {
     padding: var(--space-3xl) 0;
-}
-
-.cta-card {
+    background: linear-gradient(135deg, #8C6D54 0%, #A67B5B 100%);
     position: relative;
-    padding: var(--space-3xl);
-    background: var(--gradient-dark);
-    border: 1px solid rgba(102, 126, 234, 0.2);
-    border-radius: var(--radius-xl);
-    text-align: center;
     overflow: hidden;
 }
 
-.cta-content {
-    position: relative;
-    z-index: 1;
-}
-
-.cta-card h2 {
-    font-size: var(--font-size-4xl);
-    font-weight: 800;
-    margin-bottom: var(--space-md);
-}
-
-.cta-card>.cta-content>p {
-    font-size: var(--font-size-lg);
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-xl);
-}
-
-.cta-form {
-    max-width: 500px;
-    margin: 0 auto var(--space-md);
-}
-
-.form-group {
-    display: flex;
-    gap: var(--space-sm);
-    padding: var(--space-xs);
-    background: var(--color-bg);
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: var(--radius-full);
-    box-shadow: var(--shadow-sm);
-}
-
-.form-group input {
-    flex: 1;
-    padding: var(--space-sm) var(--space-md);
-    background: transparent;
-    border: none;
-    color: var(--color-text);
-    font-size: var(--font-size-base);
-    outline: none;
-}
-
-.form-group input::placeholder {
-    color: var(--color-text-muted);
-}
-
-.form-note {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-}
-
-.cta-decoration {
+.impact-section::before {
+    content: '';
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg, rgba(140, 140, 140, 0.05) 0%, transparent 100%);
     pointer-events: none;
 }
 
-.cta-circles {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.impact-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+    text-align: center;
+    z-index: 1;
 }
 
-.circle {
-    position: absolute;
-    border: 1px solid rgba(102, 126, 234, 0.1);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.impact-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #F5F5F0;
+    margin-bottom: var(--space-lg);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 20px rgba(45, 45, 45, 0.3);
 }
 
-.c1 {
-    width: 300px;
-    height: 300px;
+.impact-subtitle {
+    font-size: var(--font-size-lg);
+    color: rgba(245, 245, 240, 0.9);
+    margin-bottom: var(--space-xl);
+    font-weight: 400;
 }
 
-.c2 {
-    width: 500px;
-    height: 500px;
+.impact-form {
+    max-width: 600px;
+    margin: 0 auto var(--space-md);
 }
 
-.c3 {
-    width: 700px;
-    height: 700px;
+.impact-form-group {
+    display: flex;
+    gap: var(--space-sm);
+    background: rgba(245, 245, 240, 0.15);
+    padding: var(--space-xs);
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(245, 245, 240, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(45, 45, 45, 0.2);
+}
+
+.impact-form-group input {
+    flex: 1;
+    padding: var(--space-md) var(--space-lg);
+    background: rgba(245, 245, 240, 0.95);
+    border: none;
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-full);
+    outline: none;
+    font-weight: 500;
+}
+
+.impact-form-group input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.btn-impact {
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    background: #2D2D2D;
+    color: #F5F5F0;
+    border: 2px solid #2D2D2D;
+    box-shadow: 0 4px 20px rgba(45, 45, 45, 0.4);
+    transition: all var(--transition-base);
+}
+
+.btn-impact:hover {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(45, 45, 45, 0.5);
+}
+
+.btn-impact svg {
+    stroke-width: 2.5;
+}
+
+.impact-note {
+    font-size: var(--font-size-sm);
+    color: rgba(245, 245, 240, 0.7);
+    font-weight: 400;
 }
 
 /* ===== FOOTER ===== */
@@ -1488,6 +1492,21 @@ button {
     .apps-note {
         flex-direction: column;
         text-align: center;
+    }
+
+    .impact-form-group {
+        flex-direction: column;
+        border-radius: var(--radius-lg);
+    }
+
+    .impact-form-group input,
+    .btn-impact {
+        width: 100%;
+        text-align: center;
+    }
+
+    .impact-title {
+        font-size: 2rem;
     }
 
     .cta-card {
