@@ -481,6 +481,47 @@ p {
     border: 1px solid rgba(212, 99, 61, 0.2);
 }
 
+/* === CALLOUT BOX === */
+.callout-box {
+    background: linear-gradient(135deg, rgba(212, 99, 61, 0.12) 0%, rgba(212, 99, 61, 0.06) 100%);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin-top: var(--space-2xl);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.callout-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.callout-content {
+    flex: 1;
+}
+
+.callout-title {
+    font-size: 1.75rem;
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+}
+
+.callout-text {
+    font-size: 1.125rem;
+    color: var(--color-text);
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+.callout-text strong {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+}
+
 /* === TEXT ALIGNMENT === */
 .text-center {
     text-align: center;
@@ -693,6 +734,23 @@ p {
 
     .hero-product-visual {
         max-width: 350px;
+    }
+
+    .callout-box {
+        flex-direction: column;
+        padding: var(--space-lg);
+    }
+
+    .callout-icon {
+        font-size: 2.5rem;
+    }
+
+    .callout-title {
+        font-size: 1.5rem;
+    }
+
+    .callout-text {
+        font-size: 1rem;
     }
 }
 
