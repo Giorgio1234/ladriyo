@@ -481,6 +481,13 @@ p {
     border: 1px solid rgba(212, 99, 61, 0.2);
 }
 
+/* === BADGE GROUP === */
+.badge-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
 /* === CALLOUT BOX === */
 .callout-box {
     background: linear-gradient(135deg, rgba(212, 99, 61, 0.12) 0%, rgba(212, 99, 61, 0.06) 100%);
@@ -970,4 +977,57 @@ p {
 
 .mb-xl {
     margin-bottom: var(--space-xl);
+}
+
+/* === FOCUS STYLES (Keyboard Navigation) === */
+.btn:focus-visible,
+.nav-link:focus-visible,
+.footer-link:focus-visible,
+.scroll-to-top:focus-visible,
+.logo:focus-visible,
+.mobile-menu-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero-product-image {
+        animation: none;
+    }
+}
+
+/* === PRINT STYLES === */
+@media print {
+
+    .header,
+    .scroll-to-top,
+    .mobile-menu-btn,
+    .btn-group {
+        display: none !important;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .section {
+        padding: 1rem 0;
+    }
+
+    body {
+        color: #000;
+        background: #fff;
+    }
 }
