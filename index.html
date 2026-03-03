@@ -10,6 +10,34 @@
         content="bloqueo apps, adicción celular, NFC, wellbeing digital, Argentina, bloqueo smartphone">
     <title>LadriYO | Pegale un ladrillazo a tu adicción</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧱</text></svg>">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soyladriyo.com/">
+    <meta property="og:title" content="LadriYO | Pegale un ladrillazo a tu adicción">
+    <meta property="og:description"
+        content="Un dispositivo físico NFC para bloquear aplicaciones y combatir la adicción al celular. Hecho en Argentina.">
+    <meta property="og:image" content="https://soyladriyo.com/product-render-2.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LadriYO | Pegale un ladrillazo a tu adicción">
+    <meta name="twitter:description"
+        content="Un dispositivo físico NFC para bloquear aplicaciones y combatir la adicción al celular. Hecho en Argentina.">
+    <meta name="twitter:image" content="https://soyladriyo.com/product-render-2.png">
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5PSCG4Q3');</script>
+    <!-- End Google Tag Manager -->
+
     <!-- Google Fonts - Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,9 +49,14 @@
 
 <body>
 
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5PSCG4Q3" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <!-- HEADER / NAVIGATION -->
     <header class="header" id="header">
-        <nav class="nav container">
+        <nav class="nav container" role="navigation" aria-label="Navegación principal">
             <a href="#" class="logo">Ladri<span class="logo-emphasis">YO</span></a>
             <ul class="nav-links">
                 <li><a href="#concepto" class="nav-link">Concepto</a></li>
@@ -31,6 +64,11 @@
                 <li><a href="#apps" class="nav-link">Apps</a></li>
                 <li><a href="#producto" class="nav-link">Producto</a></li>
             </ul>
+            <button class="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
@@ -244,13 +282,15 @@
             <!-- Product Showcase Gallery -->
             <div class="product-showcase">
                 <div class="product-image-container">
-                    <img src="product-render-1.png" alt="LadriYO vista superior - Logo grabado" class="product-image">
+                    <img src="product-render-1.png" alt="LadriYO vista superior - Logo grabado" class="product-image"
+                        loading="lazy">
                 </div>
                 <div class="product-image-container">
-                    <img src="product-render-2.png" alt="LadriYO con patrón de ladrillos" class="product-image">
+                    <img src="product-render-2.png" alt="LadriYO con patrón de ladrillos" class="product-image"
+                        loading="lazy">
                 </div>
                 <div class="product-image-container">
-                    <img src="product-render-3.png" alt="LadriYO vista angular" class="product-image">
+                    <img src="product-render-3.png" alt="LadriYO vista angular" class="product-image" loading="lazy">
                 </div>
             </div>
 
@@ -281,7 +321,7 @@
                     <div class="size-comparison-image">
                         <img src="size-comparison.png"
                             alt="LadriYO comparación de tamaño con tarjeta de crédito - 50x50x30mm"
-                            class="comparison-img">
+                            class="comparison-img" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -314,7 +354,12 @@
                 <p class="card-description">Contactanos para obtener tu dispositivo y empezar a recuperar el control de
                     tu tiempo.</p>
                 <div class="btn-group mt-lg" style="justify-content: center;">
-                    <a href="mailto:hello@ladriyo.ar" class="btn btn-primary" id="btn-contact">Contactar</a>
+                    <a href="mailto:hello@ladriyo.ar" class="btn btn-primary" id="btn-contact"
+                        aria-label="Enviar email a LadriYO">Contactar</a>
+                    <a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-secondary" id="btn-whatsapp" aria-label="Contactar por WhatsApp">
+                        💬 WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
@@ -329,8 +374,11 @@
                 <h2>Empezá hoy a recuperar tu tiempo</h2>
                 <p class="hero-tagline">Pegale un ladrillazo a tu adicción</p>
                 <div class="btn-group mt-xl" style="justify-content: center;">
-                    <a href="mailto:hello@ladriyo.ar" class="btn btn-primary" id="cta-final-contact">Conseguí tu
-                        LadriYO</a>
+                    <a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-primary" id="cta-final-contact"
+                        aria-label="Contactar por WhatsApp para conseguir tu LadriYO">
+                        💬 Conseguí tu LadriYO
+                    </a>
                     <a href="#apps" class="btn btn-secondary" id="cta-final-apps">Ver apps compatibles</a>
                 </div>
             </div>
@@ -348,6 +396,9 @@
                     <li><a href="#concepto" class="footer-link" id="footer-concepto">Concepto</a></li>
                     <li><a href="#apps" class="footer-link" id="footer-apps">Apps</a></li>
                     <li><a href="mailto:hello@ladriyo.ar" class="footer-link" id="footer-contact">Contacto</a></li>
+                    <li><a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
+                            class="footer-link" id="footer-whatsapp">WhatsApp</a></li>
+                    <li><a href="/formulario/" class="footer-link" id="footer-formulario">Encuesta</a></li>
                 </ul>
 
                 <p class="footer-note">
@@ -360,6 +411,12 @@
         </div>
     </footer>
 
+    <!-- Scroll to top button -->
+    <button class="scroll-to-top" id="scroll-to-top" aria-label="Volver arriba">
+        ↑
+    </button>
+
+    <script src="script.js" defer></script>
 </body>
 
 </html>
