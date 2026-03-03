@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LadriYO — Encuesta de Impacto</title>
+    <meta name="description"
+        content="Contanos cómo cambió tu vida digital con LadriYO. Tu experiencia nos ayuda a mejorar el producto.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --green: #22c55e;
+            --green-dark: #16a34a;
+            --green-light: #dcfce7;
+            --brick: #c2410c;
+            --brick-light: #fed7aa;
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-hover: #1c1c1c;
+            --border: #2a2a2a;
+            --border-focus: #22c55e;
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+            --text-dim: #71717a;
+            --error: #ef4444;
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 60px 30px;
+            background-position: 0 0, 30px 15px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+            animation: fadeUp 0.6s ease;
+        }
+
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .logo::before,
+        .logo::after {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--green);
+            opacity: 0.4;
+        }
+
+        .header h1 {
+            font-size: clamp(28px, 5vw, 38px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .header h1 span {
+            color: var(--green);
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        .time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-dim);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-top: 20px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .progress-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 16px 0 12px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-family: 'Space Mono', monospace;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        .progress-labels span.active {
+            color: var(--green);
+        }
+
+        .progress-bar {
+            height: 3px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--green);
+            border-radius: 3px;
+            transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .section {
+            margin-bottom: 40px;
+            animation: fadeUp 0.5s ease both;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .section-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .field {
+            margin-bottom: 24px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .field label .required {
+            color: var(--brick);
+            margin-left: 2px;
+        }
+
+        .field label .optional {
+            color: var(--text-dim);
+            font-weight: 400;
+            font-size: 12px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        input.input-error,
+        select.input-error,
+        textarea.input-error {
+            border-color: var(--error);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23a1a1aa' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 6l3.5 4 3.5-4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+        }
+
+        select option {
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        .field-error {
+            color: var(--error);
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+            font-family: 'Space Mono', monospace;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .field-error.show {
+            display: block;
+        }
+
+        .slider-group {
+            margin-bottom: 28px;
+        }
+
+        .slider-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .slider-hint {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-family: 'Space Mono', monospace;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border);
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--green);
+            cursor: pointer;
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 2px var(--green);
+            transition: transform 0.15s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--green);
+            cursor: pointer;
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 2px var(--green);
+        }
+
+        .slider-value {
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--green);
+            margin-top: 8px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .checkbox-item {
+            position: relative;
+        }
+
+        .checkbox-item input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .checkbox-item label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 400;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .checkbox-item label:hover {
+            background: var(--surface-hover);
+        }
+
+        .checkbox-item input:checked+label {
+            border-color: var(--green);
+            background: rgba(34, 197, 94, 0.06);
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 5px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .checkbox-item input:checked+label .check-icon {
+            background: var(--green);
+            border-color: var(--green);
+        }
+
+        .check-icon::after {
+            content: '✓';
+            font-size: 12px;
+            color: var(--bg);
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        .checkbox-item input:checked+label .check-icon::after {
+            opacity: 1;
+        }
+
+        .checkbox-group-error {
+            border: 1px solid var(--error);
+            border-radius: var(--radius);
+            padding: 4px;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .divider::after {
+            content: '🧱';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg);
+            padding: 0 12px;
+            font-size: 16px;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 48px;
+            background: var(--green);
+            color: #000;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.25s;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-submit:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(34, 197, 94, 0.25);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-submit .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-top-color: #000;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        .btn-submit.loading .spinner {
+            display: inline-block;
+        }
+
+        .btn-submit.loading .btn-text {
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .submit-note {
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        .submit-error {
+            margin-top: 12px;
+            color: var(--error);
+            font-size: 14px;
+            display: none;
+        }
+
+        .submit-error.show {
+            display: block;
+        }
+
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 80px 20px;
+            animation: fadeUp 0.6s ease;
+        }
+
+        .success-screen.show {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+
+        .success-screen h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .success-screen p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .success-screen .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 32px;
+            padding: 12px 32px;
+            background: transparent;
+            color: var(--green);
+            border: 1px solid var(--green);
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .success-screen .btn-back:hover {
+            background: rgba(34, 197, 94, 0.08);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <div class="logo">LadriYO</div>
+            <h1>¿Cómo cambió tu <span>vida digital</span>?</h1>
+            <p>Contanos tu experiencia con el LadriYO. Tus respuestas nos ayudan a mejorar y a mostrar el impacto real
+                del producto.</p>
+            <div class="time-badge">⏱ ~3 minutos</div>
+        </div>
+
+        <div class="progress-wrap" id="progress-wrap">
+            <div class="progress-labels">
+                <span class="active" id="prog-label">Datos básicos</span>
+                <span id="prog-step">1 / 4</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="prog-fill" style="width: 25%"></div>
+            </div>
+        </div>
+
+        <form id="survey-form" novalidate>
+
+            <!-- SECCIÓN 1: DATOS BÁSICOS -->
+            <div class="section" id="sec-1">
+                <div class="section-label">01 — Datos básicos</div>
+                <div class="section-title">Sobre vos</div>
+                <div class="section-desc">Info básica para segmentar las respuestas.</div>
+
+                <div class="field">
+                    <label for="nombre">Nombre o alias <span class="required">*</span></label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Nico" required>
+                    <div class="field-error" id="error-nombre">Este campo es obligatorio</div>
+                </div>
+
+                <div class="field">
+                    <label for="email">Email <span class="optional">(opcional — para seguimiento)</span></label>
+                    <input type="email" id="email" name="email" placeholder="tu@email.com">
+                </div>
+
+                <div class="field">
+                    <label for="edad">Edad <span class="required">*</span></label>
+                    <select id="edad" name="edad" required>
+                        <option value="" disabled selected>Seleccioná tu rango</option>
+                        <option value="13-17">13–17</option>
+                        <option value="18-24">18–24</option>
+                        <option value="25-34">25–34</option>
+                        <option value="35-44">35–44</option>
+                        <option value="45+">45+</option>
+                    </select>
+                    <div class="field-error" id="error-edad">Seleccioná tu rango de edad</div>
+                </div>
+
+                <div class="field">
+                    <label for="tiempo_uso">¿Hace cuánto usás el LadriYO? <span class="required">*</span></label>
+                    <select id="tiempo_uso" name="tiempo_uso" required>
+                        <option value="" disabled selected>Seleccioná</option>
+                        <option value="menos-1-semana">Menos de 1 semana</option>
+                        <option value="1-4-semanas">1–4 semanas</option>
+                        <option value="1-3-meses">1–3 meses</option>
+                        <option value="mas-3-meses">Más de 3 meses</option>
+                    </select>
+                    <div class="field-error" id="error-tiempo_uso">Seleccioná hace cuánto lo usás</div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- SECCIÓN 2: ANTES DEL LADRIYO -->
+            <div class="section" id="sec-2">
+                <div class="section-label">02 — Antes del LadriYO</div>
+                <div class="section-title">Tu vida digital antes 📱</div>
+                <div class="section-desc">Pensá en cómo era tu relación con el celular antes de usar el dispositivo.
+                </div>
+
+                <div class="slider-group">
+                    <label>¿Cuántas horas de pantalla diarias tenías? <span class="required">*</span></label>
+                    <div class="slider-hint">Solo uso recreativo / redes / entretenimiento</div>
+                    <div class="slider-labels"><span>1h</span><span>4h</span><span>8h+</span></div>
+                    <input type="range" name="horas_antes" min="1" max="10" value="5"
+                        oninput="this.nextElementSibling.textContent = this.value + 'h'">
+                    <div class="slider-value">5h</div>
+                </div>
+
+                <div class="slider-group">
+                    <label>¿Qué tan difícil te resultaba concentrarte? <span class="required">*</span></label>
+                    <div class="slider-hint">1 = me concentraba bien · 10 = imposible concentrarme</div>
+                    <div class="slider-labels"><span>Fácil</span><span>Medio</span><span>Imposible</span></div>
+                    <input type="range" name="concentracion_antes" min="1" max="10" value="7"
+                        oninput="this.nextElementSibling.textContent = this.value + '/10'">
+                    <div class="slider-value">7/10</div>
+                </div>
+
+                <div class="field">
+                    <label>¿Qué apps te resultaban más problemáticas? <span class="required">*</span></label>
+                    <div class="checkbox-group" id="apps-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="app-ig" name="apps_antes" value="Instagram">
+                            <label for="app-ig"><span class="check-icon"></span> Instagram</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="app-tt" name="apps_antes" value="TikTok">
+                            <label for="app-tt"><span class="check-icon"></span> TikTok</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="app-tw" name="apps_antes" value="Twitter/X">
+                            <label for="app-tw"><span class="check-icon"></span> Twitter / X</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="app-yt" name="apps_antes" value="YouTube">
+                            <label for="app-yt"><span class="check-icon"></span> YouTube</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="app-wa" name="apps_antes" value="WhatsApp">
+                            <label for="app-wa"><span class="check-icon"></span> WhatsApp</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="app-other" name="apps_antes" value="Otra">
+                            <label for="app-other"><span class="check-icon"></span> Otra</label>
+                        </div>
+                    </div>
+                    <div class="field-error" id="error-apps">Seleccioná al menos una app</div>
+                </div>
+
+                <div class="slider-group">
+                    <label>¿Cuántas veces al día desbloqueabas el celular "sin razón"? <span
+                            class="required">*</span></label>
+                    <div class="slider-hint">Estimación aproximada</div>
+                    <div class="slider-labels"><span>Pocas</span><span>~30</span><span>60+</span></div>
+                    <input type="range" name="desbloqueos_antes" min="5" max="80" value="40" step="5"
+                        oninput="this.nextElementSibling.textContent = '~' + this.value + ' veces'">
+                    <div class="slider-value">~40 veces</div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- SECCIÓN 3: DESPUÉS DEL LADRIYO -->
+            <div class="section" id="sec-3">
+                <div class="section-label">03 — Después del LadriYO</div>
+                <div class="section-title">Tu vida digital ahora 🧱</div>
+                <div class="section-desc">Ahora pensá en cómo cambió tu relación con el celular usando el LadriYO.</div>
+
+                <div class="slider-group">
+                    <label>¿Cuántas horas de pantalla recreativas tenés ahora? <span class="required">*</span></label>
+                    <div class="slider-labels"><span>1h</span><span>4h</span><span>8h+</span></div>
+                    <input type="range" name="horas_despues" min="1" max="10" value="3"
+                        oninput="this.nextElementSibling.textContent = this.value + 'h'">
+                    <div class="slider-value">3h</div>
+                </div>
+
+                <div class="slider-group">
+                    <label>¿Qué tan difícil te resulta concentrarte ahora? <span class="required">*</span></label>
+                    <div class="slider-hint">1 = me concentro muy bien · 10 = sigue siendo imposible</div>
+                    <div class="slider-labels"><span>Fácil</span><span>Medio</span><span>Imposible</span></div>
+                    <input type="range" name="concentracion_despues" min="1" max="10" value="4"
+                        oninput="this.nextElementSibling.textContent = this.value + '/10'">
+                    <div class="slider-value">4/10</div>
+                </div>
+
+                <div class="slider-group">
+                    <label>¿Cuántas veces al día desbloqueás "sin razón" ahora? <span class="required">*</span></label>
+                    <div class="slider-labels"><span>Pocas</span><span>~30</span><span>60+</span></div>
+                    <input type="range" name="desbloqueos_despues" min="5" max="80" value="15" step="5"
+                        oninput="this.nextElementSibling.textContent = '~' + this.value + ' veces'">
+                    <div class="slider-value">~15 veces</div>
+                </div>
+
+                <div class="slider-group">
+                    <label>¿Qué tan probable es que recomiendes LadriYO? <span class="required">*</span></label>
+                    <div class="slider-hint">Net Promoter Score — 1 a 10</div>
+                    <div class="slider-labels"><span>Nada probable</span><span>Neutro</span><span>Seguro</span></div>
+                    <input type="range" name="nps" min="1" max="10" value="8"
+                        oninput="this.nextElementSibling.textContent = this.value + '/10'">
+                    <div class="slider-value">8/10</div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- SECCIÓN 4: CIERRE -->
+            <div class="section" id="sec-4">
+                <div class="section-label">04 — Para cerrar</div>
+                <div class="section-title">Contanos más ✍️</div>
+                <div class="section-desc">Opcional pero súper valioso para nosotros.</div>
+
+                <div class="field">
+                    <label for="sorpresa">¿Qué fue lo que más te sorprendió del LadriYO? <span
+                            class="optional">(opcional)</span></label>
+                    <textarea id="sorpresa" name="sorpresa"
+                        placeholder="Ej: No esperaba que la barrera física hiciera tanta diferencia..."></textarea>
+                </div>
+
+                <div class="field">
+                    <label for="mejora">¿Qué mejorarías del producto o la experiencia? <span
+                            class="optional">(opcional)</span></label>
+                    <textarea id="mejora" name="mejora" placeholder="Toda crítica constructiva nos suma."></textarea>
+                </div>
+
+                <div class="field">
+                    <label for="testimonio">¿Podemos usar tu testimonio (anónimo) en nuestra web? <span
+                            class="required">*</span></label>
+                    <select id="testimonio" name="testimonio" required>
+                        <option value="" disabled selected>Seleccioná</option>
+                        <option value="si">Sí, dale 💚</option>
+                        <option value="si-con-nombre">Sí, y podés usar mi nombre/alias</option>
+                        <option value="no">Prefiero que no</option>
+                    </select>
+                    <div class="field-error" id="error-testimonio">Seleccioná una opción</div>
+                </div>
+            </div>
+
+            <div class="submit-wrap">
+                <button type="submit" class="btn-submit" id="btn-submit">
+                    <span class="btn-text">🧱 Enviar respuestas</span>
+                    <span class="spinner"></span>
+                </button>
+                <p class="submit-note">Tus datos son confidenciales y no se comparten con terceros.</p>
+                <p class="submit-error" id="submit-error"></p>
+            </div>
+
+        </form>
+
+        <div class="success-screen" id="success">
+            <div class="success-icon">🧱💚</div>
+            <h2>¡Gracias por tu tiempo!</h2>
+            <p>Tu experiencia nos ayuda a mejorar LadriYO y a mostrar que el bienestar digital es posible. Seguí
+                pegándole ladrillazos a la adicción.</p>
+            <a href="https://soyladriyo.com" class="btn-back">← Volver al sitio</a>
+        </div>
+
+    </div>
+
+    <script>
+        // ===== CONFIGURATION =====
+        // Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
+        // Get one at https://formspree.io — set destination to gmacri@itba.edu.ar
+        const FORMSPREE_URL = 'https://formspree.io/f/mzdalank';
+
+        // ===== PROGRESS BAR =====
+        const sectionNames = ['Datos básicos', 'Antes del LadriYO', 'Después del LadriYO', 'Para cerrar'];
+        const progLabel = document.getElementById('prog-label');
+        const progStep = document.getElementById('prog-step');
+        const progFill = document.getElementById('prog-fill');
+
+        function updateProgress() {
+            const sectionEls = document.querySelectorAll('.section');
+            const scrollY = window.scrollY + window.innerHeight * 0.4;
+            let current = 0;
+            sectionEls.forEach((sec, i) => {
+                if (scrollY >= sec.offsetTop) current = i;
+            });
+            progLabel.textContent = sectionNames[current] || sectionNames[0];
+            progStep.textContent = (current + 1) + ' / ' + sectionNames.length;
+            progFill.style.width = ((current + 1) / sectionNames.length * 100) + '%';
+        }
+
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+
+        // ===== VALIDATION =====
+        function showError(id, message) {
+            const el = document.getElementById('error-' + id);
+            if (el) {
+                if (message) el.textContent = message;
+                el.classList.add('show');
+            }
+            // Add error style to input
+            const input = document.getElementById(id) || document.querySelector('[name="' + id + '"]');
+            if (input && input.type !== 'checkbox') {
+                input.classList.add('input-error');
+            }
+        }
+
+        function clearError(id) {
+            const el = document.getElementById('error-' + id);
+            if (el) el.classList.remove('show');
+            const input = document.getElementById(id) || document.querySelector('[name="' + id + '"]');
+            if (input) input.classList.remove('input-error');
+            // Also clear checkbox group error
+            if (id === 'apps') {
+                const group = document.getElementById('apps-group');
+                if (group) group.classList.remove('checkbox-group-error');
+            }
+        }
+
+        function clearAllErrors() {
+            document.querySelectorAll('.field-error').forEach(el => el.classList.remove('show'));
+            document.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+            const group = document.getElementById('apps-group');
+            if (group) group.classList.remove('checkbox-group-error');
+        }
+
+        function validateForm() {
+            clearAllErrors();
+            let valid = true;
+            let firstError = null;
+
+            // Nombre
+            const nombre = document.getElementById('nombre');
+            if (!nombre.value.trim()) {
+                showError('nombre');
+                valid = false;
+                if (!firstError) firstError = nombre;
+            }
+
+            // Edad
+            const edad = document.getElementById('edad');
+            if (!edad.value) {
+                showError('edad');
+                valid = false;
+                if (!firstError) firstError = edad;
+            }
+
+            // Tiempo de uso
+            const tiempoUso = document.getElementById('tiempo_uso');
+            if (!tiempoUso.value) {
+                showError('tiempo_uso');
+                valid = false;
+                if (!firstError) firstError = tiempoUso;
+            }
+
+            // Apps checkboxes — at least one checked
+            const appsChecked = document.querySelectorAll('input[name="apps_antes"]:checked');
+            if (appsChecked.length === 0) {
+                showError('apps');
+                document.getElementById('apps-group').classList.add('checkbox-group-error');
+                valid = false;
+                if (!firstError) firstError = document.getElementById('apps-group');
+            }
+
+            // Testimonio
+            const testimonio = document.getElementById('testimonio');
+            if (!testimonio.value) {
+                showError('testimonio');
+                valid = false;
+                if (!firstError) firstError = testimonio;
+            }
+
+            // Scroll to first error
+            if (firstError) {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            return valid;
+        }
+
+        // Clear errors on input change
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            const event = el.type === 'checkbox' ? 'change' : 'input';
+            el.addEventListener(event, () => {
+                if (el.name === 'apps_antes') {
+                    clearError('apps');
+                } else if (el.id) {
+                    clearError(el.id);
+                }
+            });
+        });
+
+        // ===== FORM SUBMISSION =====
+        document.getElementById('survey-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // Validate
+            if (!validateForm()) return;
+
+            const btn = document.getElementById('btn-submit');
+            const errorMsg = document.getElementById('submit-error');
+            errorMsg.classList.remove('show');
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((val, key) => {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) data[key].push(val);
+                    else data[key] = [data[key], val];
+                } else {
+                    data[key] = val;
+                }
+            });
+
+            // Make apps_antes always an array for consistency
+            if (data.apps_antes && !Array.isArray(data.apps_antes)) {
+                data.apps_antes = [data.apps_antes];
+            }
+
+            // Compute deltas
+            const horasAntes = parseInt(data.horas_antes) || 0;
+            const horasDespues = parseInt(data.horas_despues) || 0;
+            const concAntes = parseInt(data.concentracion_antes) || 0;
+            const concDespues = parseInt(data.concentracion_despues) || 0;
+            const desblAntes = parseInt(data.desbloqueos_antes) || 0;
+            const desblDespues = parseInt(data.desbloqueos_despues) || 0;
+
+            // Build the formatted message for Formspree
+            const mensaje = [
+                '--- DATOS BÁSICOS ---',
+                'Nombre: ' + (data.nombre || ''),
+                'Email: ' + (data.email || 'No proporcionado'),
+                'Edad: ' + (data.edad || ''),
+                'Tiempo de uso: ' + (data.tiempo_uso || ''),
+                '',
+                '--- ANTES DEL LADRIYO ---',
+                'Horas de pantalla: ' + horasAntes + 'h',
+                'Dificultad concentración: ' + concAntes + '/10',
+                'Apps problemáticas: ' + (data.apps_antes ? data.apps_antes.join(', ') : ''),
+                'Desbloqueos diarios: ~' + desblAntes,
+                '',
+                '--- DESPUÉS DEL LADRIYO ---',
+                'Horas de pantalla: ' + horasDespues + 'h',
+                'Dificultad concentración: ' + concDespues + '/10',
+                'Desbloqueos diarios: ~' + desblDespues,
+                'NPS (recomendación): ' + (data.nps || '') + '/10',
+                '',
+                '--- CAMBIO ---',
+                'Reducción pantalla: ' + (horasAntes - horasDespues) + 'h menos',
+                'Mejora concentración: ' + (concAntes - concDespues) + ' puntos',
+                'Reducción desbloqueos: ' + (desblAntes - desblDespues) + ' menos',
+                '',
+                '--- FEEDBACK ---',
+                'Lo que más sorprendió: ' + (data.sorpresa || 'No respondió'),
+                'Qué mejoraría: ' + (data.mejora || 'No respondió'),
+                'Permiso testimonio: ' + (data.testimonio || ''),
+            ].join('\n');
+
+            // Show loading state
+            btn.classList.add('loading');
+            btn.disabled = true;
+
+            try {
+                const response = await fetch(FORMSPREE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: '🧱 Nueva respuesta — Encuesta LadriYO',
+                        nombre: data.nombre,
+                        email: data.email || 'No proporcionado',
+                        edad: data.edad,
+                        tiempo_uso: data.tiempo_uso,
+                        horas_antes: horasAntes + 'h',
+                        concentracion_antes: concAntes + '/10',
+                        apps_antes: data.apps_antes ? data.apps_antes.join(', ') : '',
+                        desbloqueos_antes: '~' + desblAntes,
+                        horas_despues: horasDespues + 'h',
+                        concentracion_despues: concDespues + '/10',
+                        desbloqueos_despues: '~' + desblDespues,
+                        nps: (data.nps || '') + '/10',
+                        reduccion_pantalla: (horasAntes - horasDespues) + 'h menos',
+                        mejora_concentracion: (concAntes - concDespues) + ' puntos',
+                        reduccion_desbloqueos: (desblAntes - desblDespues) + ' menos',
+                        sorpresa: data.sorpresa || 'No respondió',
+                        mejora: data.mejora || 'No respondió',
+                        testimonio: data.testimonio,
+                        message: mensaje
+                    })
+                });
+
+                if (response.ok) {
+                    // Success — show thank you screen
+                    this.classList.add('hidden');
+                    document.getElementById('progress-wrap').classList.add('hidden');
+                    document.getElementById('success').classList.add('show');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    const result = await response.json();
+                    throw new Error(result.error || 'Error al enviar el formulario');
+                }
+            } catch (err) {
+                errorMsg.textContent = '❌ Hubo un error al enviar. Por favor intentá de nuevo. (' + err.message + ')';
+                errorMsg.classList.add('show');
+            } finally {
+                btn.classList.remove('loading');
+                btn.disabled = false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
