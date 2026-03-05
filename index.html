@@ -68,9 +68,14 @@
                 d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M1 14h6M9 10h6M17 14h6" />
         </symbol>
         <symbol id="ico-nfc" viewBox="0 0 24 24">
-            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                d="M6 18V6h6a6 6 0 010 12H6z" />
-            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18 6v12" opacity=".5" />
+            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M7 20V4" />
+            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M7 4c8 0 10 8 10 8s-2 8-10 8" />
+            <path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                d="M17 8c1.5 1.5 2 3 2 4s-.5 2.5-2 4" opacity=".6" />
+            <path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                d="M20 6c2 2.5 3 5 3 6s-1 3.5-3 6" opacity=".3" />
         </symbol>
         <symbol id="ico-apple" viewBox="0 0 24 24">
             <path fill="currentColor"
@@ -168,7 +173,7 @@
                 <li><a href="#para-quien" class="nav-link">¿Para quién?</a></li>
                 <li><a href="#apps" class="nav-link">Apps</a></li>
                 <li><a href="#producto" class="nav-link">Producto</a></li>
-                <li><a href="#comprar" class="nav-link nav-link-cta">Comprar</a></li>
+                <li><a href="/comprar/" class="nav-link nav-link-cta">Comprar</a></li>
             </ul>
             <button class="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false">
                 <span></span><span></span><span></span>
@@ -194,7 +199,7 @@
                     solo distancia real entre vos y la tentación.
                 </p>
                 <div class="btn-group">
-                    <a href="#comprar" class="btn btn-primary" id="cta-primary">
+                    <a href="/comprar/" class="btn btn-primary" id="cta-primary">
                         <svg class="icon-inline">
                             <use href="#ico-brick" />
                         </svg>
@@ -296,7 +301,7 @@
                         </svg></div>
                     <div>
                         <h3>Alejate del dispositivo</h3>
-                        <p>Ahí está la magia: dejá el LadriYO donde no puedas acceder fácilmente. La distancia es la
+                        <p>Ahí está la magia: dejá el LadriYO donde no podés acceder fácilmente. La distancia es la
                             clave.</p>
                     </div>
                 </div>
@@ -306,7 +311,7 @@
                         </svg></div>
                     <div>
                         <h3>Apps bloqueadas</h3>
-                        <p>Las apps quedan inaccesibles hasta que vuelvas físicamente al dispositivo y lo tapees de
+                        <p>Las apps quedan inaccesibles hasta que volvés físicamente al dispositivo y lo tapeás de
                             nuevo.</p>
                     </div>
                 </div>
@@ -394,7 +399,7 @@
                             <p class="usecase-point-text">Vos decidís qué apps bloquear y cuándo</p>
                         </div>
                     </div>
-                    <a href="#comprar" class="usecase-card-cta" id="cta-usecase-personal">Conseguí tu LadriYO →</a>
+                    <a href="/comprar/" class="usecase-card-cta" id="cta-usecase-personal">Conseguí tu LadriYO →</a>
                 </div>
                 <div class="usecase-card">
                     <div class="usecase-card-icon"><svg>
@@ -428,7 +433,7 @@
                                 tangible</p>
                         </div>
                     </div>
-                    <a href="#comprar" class="usecase-card-cta" id="cta-usecase-parental">Conseguí tu LadriYO →</a>
+                    <a href="/comprar/" class="usecase-card-cta" id="cta-usecase-parental">Conseguí tu LadriYO →</a>
                 </div>
             </div>
             <p class="usecase-closing">"Ya sea para vos o para tu familia, LadriYO convierte la distancia física en tu
@@ -688,81 +693,6 @@
         </div>
     </section>
 
-    <!-- COMPRAR -->
-    <section class="section comprar-section" id="comprar">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label"><svg class="icon-inline">
-                        <use href="#ico-brick" />
-                    </svg> Comprar</span>
-                <h2>Conseguí tu LadriYO</h2>
-                <p>Empezá a recuperar el control de tu tiempo hoy.</p>
-            </div>
-            <div class="comprar-layout">
-                <div class="comprar-image">
-                    <picture>
-                        <source srcset="product-render-2.webp" type="image/webp"><img src="product-render-2.png"
-                            alt="LadriYO - Dispositivo NFC de bloqueo de apps con patrón de ladrillos"
-                            class="comprar-product-img" loading="lazy">
-                    </picture>
-                </div>
-                <div class="comprar-info">
-                    <span class="comprar-badge"><svg class="icon-inline">
-                            <use href="#ico-flag-ar" />
-                        </svg> Producto Argentino</span>
-                    <h3 class="comprar-product-name">LadriYO</h3>
-                    <p class="comprar-tagline">Tu herramienta de libertad digital</p>
-                    <div class="comprar-price"><span class="comprar-price-amount">$30.000</span><span
-                            class="comprar-price-currency">ARS</span></div>
-                    <div class="comprar-actions">
-                        <a href="https://gioprint.mitiendanube.com/productos/ladriyo/" target="_blank"
-                            rel="noopener noreferrer" class="btn btn-comprar" id="btn-comprar">
-                            <svg class="icon-inline">
-                                <use href="#ico-brick" />
-                            </svg> Comprar ahora — $30.000
-                        </a>
-                        <a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-secondary" id="btn-comprar-whatsapp">
-                            <svg class="icon-inline">
-                                <use href="#ico-whatsapp" />
-                            </svg> Escribinos por WhatsApp
-                        </a>
-                    </div>
-                    <div class="comprar-trust">
-                        <div class="trust-item"><svg class="icon-inline">
-                                <use href="#ico-flag-ar" />
-                            </svg><span>Hecho en Argentina</span></div>
-                        <div class="trust-item"><svg class="icon-inline">
-                                <use href="#ico-lock" />
-                            </svg><span>Pago seguro via MercadoPago</span></div>
-                        <div class="trust-item"><svg class="icon-inline">
-                                <use href="#ico-box" />
-                            </svg><span>Envío a todo el país</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="comprar-included mt-xl">
-                <h3 class="comprar-included-title">¿Qué incluye?</h3>
-                <div class="grid grid-2">
-                    <div class="card">
-                        <div class="card-icon"><svg class="icon-inline">
-                                <use href="#ico-brick" />
-                            </svg></div>
-                        <h3 class="card-title">1x Dispositivo LadriYO</h3>
-                        <p class="card-description">Dispositivo NFC con carcasa premium y patrón de ladrillos grabado.
-                        </p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon"><svg class="icon-inline">
-                                <use href="#ico-book" />
-                            </svg></div>
-                        <h3 class="card-title">Guía de inicio rápido</h3>
-                        <p class="card-description">Instrucciones claras para configurar tu LadriYO en minutos.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- SURVEY BANNER -->
     <section class="section" id="encuesta">
@@ -792,19 +722,17 @@
                 <h2>Empezá hoy a recuperar tu tiempo</h2>
                 <p class="hero-tagline" style="margin:var(--space-md) 0">Pegale un ladrillazo a tu adicción</p>
                 <div class="btn-group mt-xl" style="justify-content:center;">
-                    <a href="#comprar" class="btn btn-primary" id="cta-final-comprar">
+                    <a href="/comprar/" class="btn btn-primary" id="cta-final-comprar">
                         <svg class="icon-inline">
                             <use href="#ico-brick" />
-                        </svg> Comprar ahora — $30.000
-                    </a>
-                    <a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-secondary" id="cta-final-contact"
-                        aria-label="Consultar por WhatsApp para conseguir tu LadriYO">
-                        <svg class="icon-inline">
-                            <use href="#ico-whatsapp" />
-                        </svg> Escribinos por WhatsApp
+                        </svg> Conseguí tu LadriYO →
                     </a>
                 </div>
+                <p style="margin-top:var(--space-md);font-size:0.9375rem;color:var(--color-text-dim);">
+                    ¿Dudas? <a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
+                        style="color:var(--color-green-light);text-decoration:underline;text-underline-offset:3px;"
+                        id="cta-final-contact">Escribinos por WhatsApp</a>
+                </p>
             </div>
         </div>
     </section>
@@ -820,7 +748,7 @@
                     <li><a href="#como-funciona" class="footer-link" id="footer-como">Cómo Funciona</a></li>
                     <li><a href="#para-quien" class="footer-link" id="footer-para-quien">¿Para quién?</a></li>
                     <li><a href="#apps" class="footer-link" id="footer-apps">Apps</a></li>
-                    <li><a href="#comprar" class="footer-link" id="footer-comprar">Comprar</a></li>
+                    <li><a href="/comprar/" class="footer-link" id="footer-comprar">Comprar</a></li>
                     <li><a href="mailto:hello@ladriyo.ar" class="footer-link" id="footer-contact">Contacto</a></li>
                     <li><a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
                             class="footer-link" id="footer-whatsapp">WhatsApp</a></li>
