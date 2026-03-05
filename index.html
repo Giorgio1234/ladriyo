@@ -63,6 +63,7 @@
                 <li><a href="#como-funciona" class="nav-link">Cómo Funciona</a></li>
                 <li><a href="#apps" class="nav-link">Apps</a></li>
                 <li><a href="#producto" class="nav-link">Producto</a></li>
+                <li><a href="#comprar" class="nav-link nav-link-cta">Comprar</a></li>
             </ul>
             <button class="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false">
                 <span></span>
@@ -333,8 +334,8 @@
                     </div>
                     <div class="size-comparison-image">
                         <picture>
-                            <source srcset="size-comparison.webp" type="image/webp">
-                            <img src="size-comparison.png"
+                            <source srcset="size-comparison-new.webp" type="image/webp">
+                            <img src="size-comparison-new.jpg"
                                 alt="LadriYO comparación de tamaño con tarjeta de crédito - 50x50x30mm"
                                 class="comparison-img" loading="lazy">
                         </picture>
@@ -364,25 +365,88 @@
                         pasión por el detalle.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="card mt-xl text-center">
-                <h3 class="card-title">💚 Querés tu LadriYO?</h3>
-                <p class="card-description">Contactanos para obtener tu dispositivo y empezar a recuperar el control de
-                    tu tiempo.</p>
-                <div class="btn-group mt-lg" style="justify-content: center;">
-                    <a href="mailto:hello@ladriyo.ar" class="btn btn-primary" id="btn-contact"
-                        aria-label="Enviar email a LadriYO">Contactar</a>
-                    <a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-secondary" id="btn-whatsapp" aria-label="Contactar por WhatsApp">
-                        💬 WhatsApp
-                    </a>
+    <!-- COMPRAR SECTION -->
+    <section class="section comprar-section" id="comprar">
+        <div class="container">
+            <div class="section-header">
+                <h2>🧱 Conseguí tu LadriYO</h2>
+                <p>Empezá a recuperar el control de tu tiempo hoy.</p>
+            </div>
+
+            <div class="comprar-layout">
+                <!-- Product Image -->
+                <div class="comprar-image">
+                    <picture>
+                        <source srcset="product-render-2.webp" type="image/webp">
+                        <img src="product-render-2.png" alt="LadriYO - Dispositivo NFC de bloqueo de apps"
+                            class="comprar-product-img" loading="lazy">
+                    </picture>
+                </div>
+
+                <!-- Product Info -->
+                <div class="comprar-info">
+                    <span class="comprar-badge">🇦🇷 Producto Argentino</span>
+                    <h3 class="comprar-product-name">LadriYO</h3>
+                    <p class="comprar-tagline">Tu herramienta de libertad digital</p>
+
+                    <div class="comprar-price">
+                        <span class="comprar-price-amount">$XX.XXX</span>
+                        <span class="comprar-price-currency">ARS</span>
+                    </div>
+
+                    <div class="comprar-actions">
+                        <a href="https://gioprint.mitiendanube.com/productos/ladriyo/" target="_blank"
+                            rel="noopener noreferrer" class="btn btn-comprar" id="btn-comprar">
+                            🧱 Comprar ahora
+                        </a>
+                        <a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-secondary" id="btn-comprar-whatsapp">
+                            💬 Consultar por WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="comprar-trust">
+                        <div class="trust-item">
+                            <span class="trust-icon">🇦🇷</span>
+                            <span>Hecho en Argentina</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-icon">🔒</span>
+                            <span>Pago seguro via MercadoPago</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-icon">📦</span>
+                            <span>Envío a todo el país</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What's Included -->
+            <div class="comprar-included mt-xl">
+                <h3 class="comprar-included-title">¿Qué incluye?</h3>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <div class="card-icon">🧱</div>
+                        <h3 class="card-title">1x Dispositivo LadriYO</h3>
+                        <p class="card-description">Dispositivo NFC con carcasa premium y patrón de ladrillos grabado.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📖</div>
+                        <h3 class="card-title">Guía de inicio rápido</h3>
+                        <p class="card-description">Instrucciones claras para configurar tu LadriYO en minutos.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FINAL CTA -->
-    <section class="section">
+    <section class="section section-alt">
         <div class="container">
             <div class="section-header">
                 <div class="badge badge-primary mb-md" style="font-size: 1rem;">🇦🇷 Producto Argentino
@@ -390,12 +454,14 @@
                 <h2>Empezá hoy a recuperar tu tiempo</h2>
                 <p class="hero-tagline">Pegale un ladrillazo a tu adicción</p>
                 <div class="btn-group mt-xl" style="justify-content: center;">
-                    <a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-primary" id="cta-final-contact"
-                        aria-label="Contactar por WhatsApp para conseguir tu LadriYO">
-                        💬 Conseguí tu LadriYO
+                    <a href="#comprar" class="btn btn-primary" id="cta-final-comprar">
+                        🧱 Comprar ahora
                     </a>
-                    <a href="#apps" class="btn btn-secondary" id="cta-final-apps">Ver apps compatibles</a>
+                    <a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-secondary" id="cta-final-contact"
+                        aria-label="Contactar por WhatsApp para conseguir tu LadriYO">
+                        💬 Consultar por WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
@@ -411,6 +477,7 @@
                 <ul class="footer-links">
                     <li><a href="#concepto" class="footer-link" id="footer-concepto">Concepto</a></li>
                     <li><a href="#apps" class="footer-link" id="footer-apps">Apps</a></li>
+                    <li><a href="#comprar" class="footer-link" id="footer-comprar">Comprar</a></li>
                     <li><a href="mailto:hello@ladriyo.ar" class="footer-link" id="footer-contact">Contacto</a></li>
                     <li><a href="https://wa.me/5491162524465" target="_blank" rel="noopener noreferrer"
                             class="footer-link" id="footer-whatsapp">WhatsApp</a></li>

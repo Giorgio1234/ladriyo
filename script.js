@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Observe elements that exist in the current HTML
-    document.querySelectorAll('.card, .feature-item, .app-card, .callout-box, .size-comparison-section').forEach(el => {
+    document.querySelectorAll('.card, .feature-item, .app-card, .callout-box, .size-comparison-section, .comprar-layout, .comprar-included').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';

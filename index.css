@@ -971,3 +971,234 @@ p {
 .mb-xl {
     margin-bottom: var(--space-xl);
 }
+
+/* === NAV CTA LINK === */
+.nav-link-cta {
+    color: var(--color-accent) !important;
+    font-weight: var(--font-weight-bold) !important;
+}
+
+.nav-link-cta::after {
+    background: var(--gradient-accent) !important;
+}
+
+/* === COMPRAR SECTION === */
+.comprar-section {
+    background: var(--color-white);
+}
+
+.comprar-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+    background: var(--color-background);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    border: 1px solid rgba(26, 77, 46, 0.08);
+    box-shadow: var(--shadow-md);
+}
+
+.comprar-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comprar-product-img {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    filter: drop-shadow(0 16px 32px rgba(26, 77, 46, 0.15));
+    animation: float 6s ease-in-out infinite;
+}
+
+.comprar-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.comprar-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: rgba(26, 77, 46, 0.08);
+    color: var(--color-primary);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-xl);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
+    border: 1px solid rgba(26, 77, 46, 0.15);
+    width: fit-content;
+}
+
+.comprar-product-name {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+}
+
+.comprar-tagline {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-sm);
+}
+
+.comprar-price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-xs);
+    margin: var(--space-sm) 0;
+}
+
+.comprar-price-amount {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent);
+    letter-spacing: -0.01em;
+}
+
+.comprar-price-currency {
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-light);
+}
+
+/* === COMPRAR BUTTON (most prominent CTA) === */
+.comprar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin: var(--space-md) 0;
+}
+
+.btn-comprar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: 1.25rem 2.5rem;
+    background: var(--gradient-accent);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-primary);
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(212, 99, 61, 0.3);
+    animation: pulseGlow 2.5s ease-in-out infinite;
+    transition: all var(--transition-base);
+}
+
+.btn-comprar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.btn-comprar:hover::before {
+    left: 100%;
+}
+
+.btn-comprar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(212, 99, 61, 0.4);
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 20px rgba(212, 99, 61, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 4px 30px rgba(212, 99, 61, 0.5), 0 0 60px rgba(212, 99, 61, 0.15);
+    }
+}
+
+/* === TRUST SIGNALS === */
+.comprar-trust {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(26, 77, 46, 0.1);
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-weight: var(--font-weight-medium);
+}
+
+.trust-icon {
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+/* === WHAT'S INCLUDED === */
+.comprar-included-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--color-primary);
+    margin-bottom: var(--space-xl);
+}
+
+/* === COMPRAR RESPONSIVE === */
+@media (max-width: 768px) {
+    .comprar-layout {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: var(--space-xl) var(--space-lg);
+        gap: var(--space-xl);
+    }
+
+    .comprar-badge {
+        margin: 0 auto;
+    }
+
+    .comprar-product-name {
+        text-align: center;
+    }
+
+    .comprar-tagline {
+        text-align: center;
+    }
+
+    .comprar-price {
+        justify-content: center;
+    }
+
+    .comprar-actions {
+        align-items: center;
+    }
+
+    .comprar-actions .btn {
+        width: 100%;
+    }
+
+    .comprar-trust {
+        align-items: center;
+    }
+
+    .comprar-product-img {
+        max-width: 280px;
+    }
+}
