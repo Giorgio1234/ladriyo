@@ -19,53 +19,78 @@ document.addEventListener('DOMContentLoaded', () => {
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+
+            // Handle logo / scroll-to-top links
+            if (href === '#' || href === '#hero') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                closeMobileMenu();
+                return;
+            }
+
+            const target = document.querySelector(href);
             if (target) {
+                e.preventDefault();
                 const headerOffset = 80;
                 const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
 
-                // Close mobile menu if open
-                if (navLinks && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.classList.remove('active');
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                }
+                closeMobileMenu();
             }
         });
     });
 
-    // Header scroll effect
-    const header = document.querySelector('.header');
+    function closeMobileMenu() {
+        if (navLinks && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+    }
 
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
+    // Scroll effects — combined & throttled with rAF
+    const header = document.querySelector('.header');
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    let ticking = false;
+
+    function onScroll() {
+        const scrollY = window.scrollY;
+
+        // Header shadow
+        if (header) {
+            if (scrollY > 100) {
                 header.style.boxShadow = '0 2px 20px rgba(26, 77, 46, 0.08)';
             } else {
                 header.style.boxShadow = 'none';
             }
-        });
-    }
+        }
 
-    // Scroll-to-top button
-    const scrollToTopBtn = document.getElementById('scroll-to-top');
-
-    if (scrollToTopBtn) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 600) {
+        // Scroll-to-top visibility
+        if (scrollToTopBtn) {
+            if (scrollY > 600) {
                 scrollToTopBtn.classList.add('visible');
             } else {
                 scrollToTopBtn.classList.remove('visible');
             }
-        });
+        }
 
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    if (scrollToTopBtn) {
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
