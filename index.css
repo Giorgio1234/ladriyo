@@ -296,18 +296,8 @@ p {
     padding-bottom: var(--space-2xl);
 }
 
-/* Radial glow behind product */
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(196, 90, 60, 0.12) 0%, transparent 70%);
-    transform: translateY(-50%);
-    pointer-events: none;
-}
+/* Radial glow behind product — now lives on .hero-product-visual::after
+   so it tracks the product image on resize. */
 
 /* Subtle brick pattern in hero background */
 .hero::after {
@@ -439,6 +429,20 @@ p {
     background: radial-gradient(circle, rgba(196, 90, 60, 0.15) 0%, transparent 65%);
     border-radius: 50%;
     pointer-events: none;
+}
+
+/* Large ambient glow behind product */
+.hero-product-visual::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(196, 90, 60, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .hero-product-image {
