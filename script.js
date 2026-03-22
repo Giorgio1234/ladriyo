@@ -145,6 +145,35 @@ document.addEventListener('DOMContentLoaded', () => {
         timelineObserver.observe(timeline);
     }
 
+    // === Active Nav Section Observer ===
+    const sectionIds = ['concepto', 'como-funciona', 'para-quien', 'apps', 'producto', 'faq'];
+    const navLinkMap = {};
+    sectionIds.forEach(id => {
+        const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+        if (link) navLinkMap[id] = link;
+    });
+
+    const setActiveLink = (id) => {
+        Object.values(navLinkMap).forEach(l => l.classList.remove('active'));
+        if (id && navLinkMap[id]) navLinkMap[id].classList.add('active');
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setActiveLink(entry.target.id);
+            }
+        });
+    }, {
+        rootMargin: '-30% 0px -60% 0px',
+        threshold: 0
+    });
+
+    sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) sectionObserver.observe(el);
+    });
+
     // === FAQ Accordion ===
     document.querySelectorAll('.faq-question').forEach(btn => {
         btn.addEventListener('click', () => {
