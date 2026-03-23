@@ -108,7 +108,7 @@ body::after {
     inset: 0;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.025;
+    opacity: 0.045;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 256px 256px;
@@ -182,6 +182,8 @@ p {
 
 .section-alt {
     background-color: var(--color-bg-alt);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
 }
 
 /* Brick pattern divider */
@@ -410,6 +412,14 @@ p {
     letter-spacing: -0.01em;
 }
 
+.hero-price-note {
+    font-size: 0.875rem;
+    color: var(--color-text-dim);
+    margin: var(--space-sm) 0 0;
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.01em;
+}
+
 .hero-product-visual {
     position: relative;
     max-width: 420px;
@@ -450,22 +460,9 @@ p {
 .hero-product-image {
     width: 100%;
     height: auto;
-    animation: heroFloat 6s ease-in-out infinite;
-    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5)) drop-shadow(0 4px 16px rgba(230, 81, 0, 0.12));
     position: relative;
     z-index: 1;
-}
-
-@keyframes heroFloat {
-
-    0%,
-    100% {
-        transform: translateY(0) rotate(0deg);
-    }
-
-    50% {
-        transform: translateY(-14px) rotate(1deg);
-    }
 }
 
 /* === BUTTONS === */
@@ -1549,6 +1546,116 @@ p {
     font-size: 0.8125rem;
     margin-top: var(--space-md);
     margin-bottom: 0;
+}
+
+.footer-survey {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-dim);
+    margin-bottom: var(--space-md);
+}
+
+.footer-survey-link {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: var(--fw-medium);
+    transition: color var(--transition-fast);
+}
+
+.footer-survey-link:hover {
+    color: var(--color-accent-light);
+}
+
+/* === APPS COMPAT PILLS === */
+.apps-compat {
+    margin-top: var(--space-2xl);
+    text-align: center;
+}
+
+.apps-compat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-dim);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-display);
+    margin-bottom: var(--space-sm);
+}
+
+.apps-compat-row {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.app-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-full);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all var(--transition-base);
+}
+
+.app-pill:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: var(--color-bg-card-hover);
+    transform: translateY(-2px);
+}
+
+.app-pill .icon-inline {
+    width: 18px;
+    height: 18px;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+}
+
+.app-pill-name {
+    font-size: 0.9375rem;
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-display);
+}
+
+.app-pill-sub {
+    font-size: 0.75rem;
+    color: var(--color-text-dim);
+    padding-left: 0.5rem;
+    border-left: 1px solid var(--color-border);
+}
+
+/* === PRODUCTO PRICE ANCHOR === */
+.producto-price-anchor {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    flex-wrap: wrap;
+}
+
+.producto-price {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: var(--fw-bold);
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+}
+
+/* === FINAL CTA PRICE === */
+.final-cta-price {
+    font-size: 0.9375rem;
+    color: var(--color-text-dim);
+    margin-top: var(--space-sm);
+    margin-bottom: 0;
+    text-align: center;
+    letter-spacing: 0.01em;
 }
 
 /* === SCROLL TO TOP === */
