@@ -1,0 +1,13 @@
+{
+  "name": "ladriyo-forms",
+  "version": "1.0.0",
+  "description": "Self-hosted form submission backend for soyladriyo.com",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}
