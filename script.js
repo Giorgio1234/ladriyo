@@ -112,7 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
         '.card', '.feature-item', '.app-card', '.callout-box',
         '.size-comparison-section', '.comprar-layout', '.comprar-included',
         '.usecase-card', '.product-image-container', '.proof-metric',
-        '.survey-banner', '.faq-item', '.proof-badges'
+        '.survey-banner', '.faq-item', '.proof-badges',
+        '.section-header'
     ];
 
     document.querySelectorAll(revealSelectors.join(', ')).forEach(el => {
@@ -229,5 +230,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('[data-target]').forEach(el => {
         counterObserver.observe(el);
+    });
+
+    // === Page Exit Transitions ===
+    document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        // Skip anchors, mailto, tel, and new-tab links
+        if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') return;
+        link.addEventListener('click', (e) => {
+            if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+            e.preventDefault();
+            document.body.classList.add('page-exit');
+            setTimeout(() => {
+                window.location.href = href;
+            }, 260);
+        });
     });
 });

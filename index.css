@@ -1736,6 +1736,98 @@ p {
     animation: fadeInUp 0.8s ease-out;
 }
 
+/* === PAGE TRANSITIONS === */
+
+/* Full-page entrance on load */
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    animation: pageEnter 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Page exit — triggered via JS before navigation */
+body.page-exit {
+    animation: none !important;
+    opacity: 0 !important;
+    transform: translateY(-6px) !important;
+    transition: opacity 0.22s ease-in, transform 0.22s ease-in !important;
+}
+
+/* Header slides in from top */
+@keyframes headerSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header {
+    animation: headerSlideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+/* Hero content children — staggered entrance */
+.hero-content > * {
+    opacity: 0;
+    transform: translateY(22px);
+    animation: fadeInUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-content > *:nth-child(1) { animation-delay: 0.18s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.28s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.38s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.46s; }
+.hero-content > *:nth-child(5) { animation-delay: 0.52s; }
+.hero-content > *:nth-child(6) { animation-delay: 0.57s; }
+
+/* Hero product image slides in from the right */
+@keyframes heroImageEnter {
+    from {
+        opacity: 0;
+        transform: translateX(36px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+.hero-product-visual {
+    animation: heroImageEnter 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    body,
+    .header,
+    .hero-content > *,
+    .hero-product-visual {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    body.page-exit {
+        transition: none !important;
+    }
+}
+
 /* === UTILITY CLASSES === */
 .mt-sm {
     margin-top: var(--space-sm);
