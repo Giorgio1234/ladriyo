@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LadriYO — Insert A6</title>
+  <title>LadriYO — Insert 120×80</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
   <style>
-    @page { size: A6 portrait; margin: 0; }
+    @page { size: 80mm 120mm portrait; margin: 0; }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -23,8 +23,8 @@
     }
 
     body {
-      width: 105mm;
-      height: 148mm;
+      width: 80mm;
+      height: 120mm;
       background: #FAFAF8;
       color: var(--text);
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -34,13 +34,13 @@
     }
 
     .card {
-      width: 105mm;
-      height: 148mm;
+      width: 80mm;
+      height: 120mm;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 8mm 8mm 7mm;
+      padding: 6mm 6mm 5mm;
       position: relative;
     }
 
@@ -49,7 +49,7 @@
       content: '';
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 3mm;
+      width: 100%; height: 2.5mm;
       background: var(--accent);
     }
 
@@ -58,12 +58,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3mm;
-      padding-top: 3mm;
+      gap: 2.5mm;
+      padding-top: 2.5mm;
     }
 
     .logo {
-      font-size: 17pt;
+      font-size: 14pt;
       font-weight: 800;
       letter-spacing: -0.04em;
       color: var(--text);
@@ -72,7 +72,7 @@
     .logo em { color: var(--accent); font-style: normal; }
 
     .divider {
-      width: 8mm;
+      width: 7mm;
       height: 2px;
       background: var(--accent);
       border-radius: 2px;
@@ -81,16 +81,16 @@
     /* ── MESSAGE ── */
     .message {
       text-align: center;
-      padding: 0 2mm;
+      padding: 0 1mm;
     }
 
     .message-title {
-      font-size: 19pt;
+      font-size: 16pt;
       font-weight: 800;
       line-height: 1.05;
       letter-spacing: -0.03em;
       color: var(--text);
-      margin-bottom: 3.5mm;
+      margin-bottom: 3mm;
     }
 
     .message-title em {
@@ -99,11 +99,11 @@
     }
 
     .message-body {
-      font-size: 8.5pt;
+      font-size: 7.5pt;
       font-weight: 500;
       color: var(--muted);
-      line-height: 1.6;
-      max-width: 76mm;
+      line-height: 1.55;
+      max-width: 60mm;
       margin: 0 auto;
     }
 
@@ -117,11 +117,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2.5mm;
+      gap: 2mm;
     }
 
     .qr-label {
-      font-size: 6.5pt;
+      font-size: 6pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.12em;
@@ -129,8 +129,8 @@
     }
 
     #qrcode {
-      width: 28mm;
-      height: 28mm;
+      width: 24mm;
+      height: 24mm;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -138,13 +138,13 @@
 
     #qrcode canvas,
     #qrcode img {
-      width: 28mm !important;
-      height: 28mm !important;
-      border-radius: 4px;
+      width: 24mm !important;
+      height: 24mm !important;
+      border-radius: 3px;
     }
 
     .qr-url {
-      font-size: 7pt;
+      font-size: 6.5pt;
       font-weight: 700;
       color: var(--muted);
       letter-spacing: -0.01em;
@@ -157,7 +157,7 @@
 
     /* ── BOTTOM NOTE ── */
     .bottom-note {
-      font-size: 6pt;
+      font-size: 5.5pt;
       color: var(--dim);
       text-align: center;
       letter-spacing: 0.04em;
@@ -193,8 +193,8 @@
 <script>
   new QRCode(document.getElementById('qrcode'), {
     text: 'https://soyladriyo.com/quickstart/',
-    width: 106,
-    height: 106,
+    width: 91,
+    height: 91,
     colorDark: '#171412',
     colorLight: '#FAFAF8',
     correctLevel: QRCode.CorrectLevel.M
