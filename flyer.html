@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LadriYO — Flyer A4</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,700;0,800;1,800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,700;0,800;1,800&display=swap"
+    rel="stylesheet">
 
   <style>
-    @page { size: A4 portrait; margin: 0; }
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
-      --accent:   #D14800;
-      --text:     #171412;
-      --muted:    #5A4A45;
-      --dim:      #A0908A;
-      --border:   rgba(0,0,0,0.1);
-      --card-bg:  #F2F0EE;
+      --accent: #D14800;
+      --text: #171412;
+      --muted: #5A4A45;
+      --dim: #A0908A;
+      --border: rgba(0, 0, 0, 0.1);
+      --card-bg: #F2F0EE;
     }
 
     body {
@@ -45,8 +57,10 @@
     .flyer::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 4mm; height: 100%;
+      top: 0;
+      left: 0;
+      width: 4mm;
+      height: 100%;
       background: var(--accent);
       z-index: 10;
     }
@@ -74,7 +88,11 @@
       color: var(--text);
       line-height: 1;
     }
-    .logo em { color: var(--accent); font-style: normal; }
+
+    .logo em {
+      color: var(--accent);
+      font-style: normal;
+    }
 
     .badges {
       display: flex;
@@ -94,14 +112,16 @@
       letter-spacing: 0.07em;
       white-space: nowrap;
     }
+
     .badge-ar {
-      border: 1.5px solid rgba(209,72,0,0.25);
-      background: rgba(209,72,0,0.05);
+      border: 1.5px solid rgba(209, 72, 0, 0.25);
+      background: rgba(209, 72, 0, 0.05);
       color: var(--accent);
     }
+
     .badge-itba {
-      border: 1.5px solid rgba(0,80,160,0.2);
-      background: rgba(0,80,160,0.05);
+      border: 1.5px solid rgba(0, 80, 160, 0.2);
+      background: rgba(0, 80, 160, 0.05);
       color: #004EA8;
     }
 
@@ -140,6 +160,14 @@
     .headline em {
       color: var(--accent);
       font-style: italic;
+    }
+
+    .headline .yo {
+      color: var(--accent);
+      font-style: normal;
+      font-size: 1.6em;
+      line-height: 0.9;
+      display: inline-block;
     }
 
     .tagline {
@@ -197,7 +225,7 @@
       width: 100%;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 6mm 14mm rgba(0,0,0,0.13)) drop-shadow(0 1mm 3mm rgba(209,72,0,0.08));
+      filter: drop-shadow(0 6mm 14mm rgba(0, 0, 0, 0.13)) drop-shadow(0 1mm 3mm rgba(209, 72, 0, 0.08));
     }
 
     /* ── URL SECTION ── */
@@ -226,7 +254,10 @@
       line-height: 1;
     }
 
-    .url em { color: var(--accent); font-style: normal; }
+    .url em {
+      color: var(--accent);
+      font-style: normal;
+    }
 
     /* ── PROMO BANNER ── */
     .promo {
@@ -262,7 +293,7 @@
     .promo-sub {
       font-size: 7pt;
       font-weight: 500;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255, 255, 255, 0.78);
       margin-top: 0.5mm;
     }
 
@@ -274,7 +305,7 @@
     .promo-was {
       font-size: 8pt;
       font-weight: 600;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255, 255, 255, 0.5);
       text-decoration: line-through;
     }
 
@@ -289,7 +320,7 @@
     .promo-note {
       font-size: 6.5pt;
       font-weight: 600;
-      color: rgba(255,255,255,0.65);
+      color: rgba(255, 255, 255, 0.65);
       margin-top: 0.5mm;
     }
 
@@ -323,7 +354,10 @@
       line-height: 1;
     }
 
-    .footer-price-val em { color: var(--accent); font-style: normal; }
+    .footer-price-val em {
+      color: var(--accent);
+      font-style: normal;
+    }
 
     .footer-price-sub {
       font-size: 6.5pt;
@@ -380,75 +414,79 @@
     }
   </style>
 </head>
+
 <body>
-<div class="flyer">
-<div class="inner">
+  <div class="flyer">
+    <div class="inner">
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="logo">Ladri<em>YO</em></div>
-    <div class="badges">
-      <div class="badge badge-ar">🇦🇷 Hecho en Argentina</div>
-      <div class="badge badge-itba">🎓 Creado en el ITBA</div>
-    </div>
-  </header>
+      <!-- HEADER -->
+      <header class="header">
+        <div class="logo">Ladri<em>YO</em></div>
+        <div class="badges">
+          <div class="badge badge-ar">🇦🇷 Hecho en Argentina</div>
+          <div class="badge badge-itba">🎓 Creado en el ITBA</div>
+        </div>
+      </header>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-text">
-      <div class="kicker">Dispositivo NFC · Bloqueo de Apps</div>
-      <h1 class="headline">No podés<br>dejar de<br><em>scrollear.</em><br>Nosotros sí.</h1>
-      <p class="tagline">
-        LadriYO es un <strong>dispositivo físico NFC</strong> que bloquea tus apps. Lo dejás lejos y no podés volver hasta buscarlo. <strong>Sin trucos. Sin botón de deshacer.</strong>
-      </p>
-      <div class="chips">
-        <div class="chip"><span class="chip-dot"></span>100% privado</div>
-        <div class="chip"><span class="chip-dot"></span>Sin servidores</div>
-        <div class="chip"><span class="chip-dot"></span>Funciona offline</div>
-        <div class="chip"><span class="chip-dot"></span>iOS y Android</div>
+      <!-- HERO -->
+      <div class="hero">
+        <div class="hero-text">
+          <div class="kicker">Dispositivo NFC · Bloqueo de Apps</div>
+          <h1 class="headline">No podés<br>dejar de<br><strong>scrollear.</strong><br><span class="yo">YO</span> sí.
+          </h1>
+          <p class="tagline">
+            LadriYO es un <strong>dispositivo físico NFC</strong> que bloquea tus apps. Lo dejás lejos y no podés volver
+            hasta buscarlo. <strong>Sin trucos. Sin botón de deshacer.</strong>
+          </p>
+          <div class="chips">
+            <div class="chip"><span class="chip-dot"></span>100% privado</div>
+            <div class="chip"><span class="chip-dot"></span>Sin servidores</div>
+            <div class="chip"><span class="chip-dot"></span>Funciona offline</div>
+            <div class="chip"><span class="chip-dot"></span>iOS y Android</div>
+          </div>
+        </div>
+        <div class="hero-img">
+          <img src="product-render-2.webp" alt="LadriYO — dispositivo NFC">
+        </div>
       </div>
-    </div>
-    <div class="hero-img">
-      <img src="product-render-2.webp" alt="LadriYO — dispositivo NFC">
-    </div>
-  </div>
 
-  <!-- URL -->
-  <div class="url-section">
-    <div class="url-label">Más info y pedidos en</div>
-    <div class="url">soy<em>ladriyo</em>.com</div>
-  </div>
-
-  <!-- ITBA PROMO -->
-  <div class="promo">
-    <div class="promo-left">
-      <div class="promo-icon">🎓</div>
-      <div>
-        <div class="promo-title">Precio especial comunidad ITBA</div>
-        <div class="promo-sub">Solo por WhatsApp · +54 9 11 6252-4465</div>
+      <!-- URL -->
+      <div class="url-section">
+        <div class="url-label">Más info y pedidos en</div>
+        <div class="url">soy<em>ladriyo</em>.com</div>
       </div>
-    </div>
-    <div class="promo-right">
-      <div class="promo-was">$30.000</div>
-      <div class="promo-price">$25.000</div>
-      <div class="promo-note">ARS · Envío incluido</div>
+
+      <!-- ITBA PROMO -->
+      <div class="promo">
+        <div class="promo-left">
+          <div class="promo-icon">🎓</div>
+          <div>
+            <div class="promo-title">Precio especial comunidad ITBA</div>
+            <div class="promo-sub">Solo por WhatsApp · +54 9 11 6252-4465</div>
+          </div>
+        </div>
+        <div class="promo-right">
+          <div class="promo-was">$30.000</div>
+          <div class="promo-price">$25.000</div>
+          <div class="promo-note">ARS · Envío incluido</div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-price">
+          <div class="footer-price-label">Precio general</div>
+          <div class="footer-price-val">$<em>30.000</em></div>
+          <div class="footer-price-sub">ARS · Envío a todo el país</div>
+        </div>
+        <div class="footer-qr">
+          <img src="qr-code (1).png" alt="QR soyladriyo.com">
+          <div class="footer-qr-label">Escaneá</div>
+        </div>
+      </footer>
+
     </div>
   </div>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-price">
-      <div class="footer-price-label">Precio general</div>
-      <div class="footer-price-val">$<em>30.000</em></div>
-      <div class="footer-price-sub">ARS · Envío a todo el país</div>
-    </div>
-    <div class="footer-qr">
-      <img src="qr-code (1).png" alt="QR soyladriyo.com">
-      <div class="footer-qr-label">Escaneá</div>
-    </div>
-  </footer>
-
-</div>
-</div>
 </body>
+
 </html>
