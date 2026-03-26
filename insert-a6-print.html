@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>LadriYO — Insert A6 × 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+  <style>
+    @page { size: A4 portrait; margin: 0; }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent:  #D14800;
+      --text:    #171412;
+      --muted:   #5A4A45;
+      --dim:     #A0908A;
+      --border:  rgba(0,0,0,0.08);
+    }
+
+    body {
+      width: 210mm;
+      height: 297mm;
+      background: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      overflow: hidden;
+    }
+
+    .grid {
+      width: 210mm;
+      height: 297mm;
+      display: grid;
+      grid-template-columns: 105mm 105mm;
+      grid-template-rows: 148mm 149mm;
+    }
+
+    /* Cut lines */
+    .grid::after {
+      content: '';
+      position: fixed;
+      top: 148mm; left: 0;
+      width: 210mm; height: 1px;
+      background: rgba(0,0,0,0.12);
+      pointer-events: none;
+    }
+    .grid::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 105mm;
+      width: 1px; height: 297mm;
+      background: rgba(0,0,0,0.12);
+      pointer-events: none;
+    }
+
+    /* ── CARD ── */
+    .card {
+      width: 105mm;
+      height: 148mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8mm 8mm 7mm;
+      position: relative;
+      background: #FAFAF8;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3mm;
+      background: var(--accent);
+    }
+
+    /* ── TOP ── */
+    .top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3mm;
+      padding-top: 3mm;
+    }
+
+    .logo {
+      font-size: 17pt;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      line-height: 1;
+    }
+    .logo em { color: var(--accent); font-style: normal; }
+
+    .divider {
+      width: 8mm;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* ── MESSAGE ── */
+    .message {
+      text-align: center;
+      padding: 0 2mm;
+    }
+
+    .message-title {
+      font-size: 19pt;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 3.5mm;
+    }
+
+    .message-title em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .message-body {
+      font-size: 8.5pt;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 76mm;
+      margin: 0 auto;
+    }
+
+    .message-body strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    /* ── QR ── */
+    .qr-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5mm;
+    }
+
+    .qr-label {
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+    }
+
+    .qrcode {
+      width: 28mm;
+      height: 28mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qrcode canvas,
+    .qrcode img {
+      width: 28mm !important;
+      height: 28mm !important;
+      border-radius: 4px;
+    }
+
+    .qr-url {
+      font-size: 7pt;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: -0.01em;
+    }
+
+    .qr-url em {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    /* ── BOTTOM NOTE ── */
+    .bottom-note {
+      font-size: 6pt;
+      color: var(--dim);
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- CARD 1 -->
+  <div class="card">
+    <div class="top">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+    </div>
+    <div class="message">
+      <h2 class="message-title">Gracias por<br>tu <em>ladrillazo.</em></h2>
+      <p class="message-body">Ya tenés el dispositivo. El siguiente paso es configurar la app en tu teléfono para empezar a bloquear las apps que te roban el tiempo.<br><br><strong>Escaneá el QR para ver el tutorial de configuración.</strong></p>
+    </div>
+    <div class="qr-block">
+      <div class="qr-label">Quickstart · Configuración</div>
+      <div class="qrcode" id="qr1"></div>
+      <div class="qr-url">soy<em>ladriyo</em>.com/quickstart</div>
+    </div>
+    <div class="bottom-note">¿Dudas? WhatsApp +54 9 11 6252-4465</div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card">
+    <div class="top">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+    </div>
+    <div class="message">
+      <h2 class="message-title">Gracias por<br>tu <em>ladrillazo.</em></h2>
+      <p class="message-body">Ya tenés el dispositivo. El siguiente paso es configurar la app en tu teléfono para empezar a bloquear las apps que te roban el tiempo.<br><br><strong>Escaneá el QR para ver el tutorial de configuración.</strong></p>
+    </div>
+    <div class="qr-block">
+      <div class="qr-label">Quickstart · Configuración</div>
+      <div class="qrcode" id="qr2"></div>
+      <div class="qr-url">soy<em>ladriyo</em>.com/quickstart</div>
+    </div>
+    <div class="bottom-note">¿Dudas? WhatsApp +54 9 11 6252-4465</div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card">
+    <div class="top">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+    </div>
+    <div class="message">
+      <h2 class="message-title">Gracias por<br>tu <em>ladrillazo.</em></h2>
+      <p class="message-body">Ya tenés el dispositivo. El siguiente paso es configurar la app en tu teléfono para empezar a bloquear las apps que te roban el tiempo.<br><br><strong>Escaneá el QR para ver el tutorial de configuración.</strong></p>
+    </div>
+    <div class="qr-block">
+      <div class="qr-label">Quickstart · Configuración</div>
+      <div class="qrcode" id="qr3"></div>
+      <div class="qr-url">soy<em>ladriyo</em>.com/quickstart</div>
+    </div>
+    <div class="bottom-note">¿Dudas? WhatsApp +54 9 11 6252-4465</div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card">
+    <div class="top">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+    </div>
+    <div class="message">
+      <h2 class="message-title">Gracias por<br>tu <em>ladrillazo.</em></h2>
+      <p class="message-body">Ya tenés el dispositivo. El siguiente paso es configurar la app en tu teléfono para empezar a bloquear las apps que te roban el tiempo.<br><br><strong>Escaneá el QR para ver el tutorial de configuración.</strong></p>
+    </div>
+    <div class="qr-block">
+      <div class="qr-label">Quickstart · Configuración</div>
+      <div class="qrcode" id="qr4"></div>
+      <div class="qr-url">soy<em>ladriyo</em>.com/quickstart</div>
+    </div>
+    <div class="bottom-note">¿Dudas? WhatsApp +54 9 11 6252-4465</div>
+  </div>
+
+</div>
+
+<script>
+  const opts = {
+    text: 'https://soyladriyo.com/quickstart/',
+    width: 106,
+    height: 106,
+    colorDark: '#171412',
+    colorLight: '#FAFAF8',
+    correctLevel: QRCode.CorrectLevel.M
+  };
+  ['qr1','qr2','qr3','qr4'].forEach(id => new QRCode(document.getElementById(id), opts));
+</script>
+
+</body>
+</html>

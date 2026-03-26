@@ -56,6 +56,7 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+      justify-content: space-between;
     }
 
     /* ── HEADER ── */
@@ -63,7 +64,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 7mm;
       flex-shrink: 0;
     }
 
@@ -110,9 +110,7 @@
       display: flex;
       align-items: center;
       gap: 0;
-      flex: 1;
-      min-height: 0;
-      margin-bottom: 6mm;
+      flex: none;
     }
 
     .hero-text {
@@ -131,12 +129,12 @@
     }
 
     .headline {
-      font-size: 46pt;
+      font-size: 44pt;
       font-weight: 800;
       line-height: 0.95;
       letter-spacing: -0.04em;
       color: var(--text);
-      margin-bottom: 5mm;
+      margin-bottom: 6mm;
     }
 
     .headline em {
@@ -188,17 +186,16 @@
 
     /* Hero image */
     .hero-img {
-      width: 72mm;
+      width: 88mm;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      align-self: stretch;
     }
 
     .hero-img img {
       width: 100%;
-      height: 100%;
+      height: auto;
       object-fit: contain;
       filter: drop-shadow(0 6mm 14mm rgba(0,0,0,0.13)) drop-shadow(0 1mm 3mm rgba(209,72,0,0.08));
     }
@@ -209,7 +206,6 @@
       padding: 5mm 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      margin-bottom: 5mm;
       flex-shrink: 0;
     }
 
@@ -241,7 +237,6 @@
       align-items: center;
       justify-content: space-between;
       gap: 4mm;
-      margin-bottom: 4mm;
       flex-shrink: 0;
     }
 
@@ -401,10 +396,10 @@
   <!-- HERO -->
   <div class="hero">
     <div class="hero-text">
-      <div class="kicker">Dispositivo NFC · Bienestar Digital</div>
-      <h1 class="headline">Dejá<br>el celu.<br><em>En serio.</em></h1>
+      <div class="kicker">Dispositivo NFC · Bloqueo de Apps</div>
+      <h1 class="headline">No podés<br>dejar de<br><em>scrollear.</em><br>Nosotros sí.</h1>
       <p class="tagline">
-        LadriYO bloquea tus apps con un <strong>tag NFC físico</strong>. Lo dejás lejos y no podés desbloquear hasta volver a buscarlo. <strong>Sin trucos. Sin botones de deshacer.</strong>
+        LadriYO es un <strong>dispositivo físico NFC</strong> que bloquea tus apps. Lo dejás lejos y no podés volver hasta buscarlo. <strong>Sin trucos. Sin botón de deshacer.</strong>
       </p>
       <div class="chips">
         <div class="chip"><span class="chip-dot"></span>100% privado</div>
@@ -450,10 +445,6 @@
     <div class="footer-qr">
       <img src="qr-code (1).png" alt="QR soyladriyo.com">
       <div class="footer-qr-label">Escaneá</div>
-    </div>
-    <div class="footer-itba">
-      <img src="logo-itba.png" alt="ITBA">
-      <div class="footer-itba-label">Creado en comunidad</div>
     </div>
   </footer>
 
