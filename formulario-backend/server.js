@@ -2,29 +2,55 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 const DATA_FILE = path.join(__dirname, 'data', 'submissions.jsonl');
 
-app.use(cors({ origin: '*' }));
+// 1. Confiamos en Nginx para obtener la IP real del usuario
+app.set('trust proxy', 1);
+
+// 2. Agrega cabeceras de seguridad HTTP
+app.use(helmet());
+
+// 3. Restringimos CORS solo a tu dominio
+const ALLOWED_ORIGINS = [
+  'https://soyladriyo.com',
+  'https://www.soyladriyo.com'
+];
+app.use(cors({
+  origin: (origin, cb) => {
+    // Permitimos peticiones desde nuestro dominio (o sin origen, como cURL local)
+    if (!origin || ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
+    cb(new Error('Bloqueado por CORS - Origen no autorizado'));
+  }
+}));
+
+// 4. Rate Limiting: Máximo 5 peticiones cada 15 minutos por IP
+const formLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: { ok: false, error: 'Demasiadas peticiones. Por favor intentá de nuevo más tarde.' }
+});
 
 app.use(express.json({ limit: '64kb' }));
 
 // Ensure data directory exists
 fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
 
-app.post('/api/survey', (req, res) => {
+// Aplicamos el limitador de spam solo a esta ruta
+app.post('/api/survey', formLimiter, (req, res) => {
   const body = req.body;
 
   if (!body || !body.nombre || !body.edad) {
     return res.status(400).json({ ok: false, error: 'Missing required fields' });
   }
 
-  const forwardedIps = req.headers['x-forwarded-for'];
   const entry = {
     ts: new Date().toISOString(),
-    ip: forwardedIps ? forwardedIps.split(',')[0].trim() : req.socket.remoteAddress,
+    ip: req.ip, // Ahora es 100% seguro gracias al "trust proxy" de arriba
     ...body,
   };
 
