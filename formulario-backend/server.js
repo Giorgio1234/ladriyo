@@ -7,22 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const DATA_FILE = path.join(__dirname, 'data', 'submissions.jsonl');
 
-// Only accept requests from the production domain (and localhost for testing)
-const ALLOWED_ORIGINS = [
-  'https://soyladriyo.com',
-  'https://www.soyladriyo.com',
-  'http://localhost',
-  'http://127.0.0.1',
-];
-
-app.use(cors({
-  origin: (origin, cb) => {
-    // Allow requests with no origin (e.g. curl, Postman) only in dev
-    if (!origin || ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
-    cb(new Error('Not allowed by CORS'));
-  },
-  methods: ['POST', 'OPTIONS'],
-}));
+app.use(cors({ origin: '*' }));
 
 app.use(express.json({ limit: '64kb' }));
 
