@@ -36,9 +36,10 @@ app.post('/api/survey', (req, res) => {
     return res.status(400).json({ ok: false, error: 'Missing required fields' });
   }
 
+  const forwardedIps = req.headers['x-forwarded-for'];
   const entry = {
     ts: new Date().toISOString(),
-    ip: req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket.remoteAddress,
+    ip: forwardedIps ? forwardedIps.split(',')[0].trim() : req.socket.remoteAddress,
     ...body,
   };
 

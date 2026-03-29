@@ -247,4 +247,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 260);
         });
     });
+
+    // === BFCache Fix for Page Exit ===
+    window.addEventListener('pageshow', (e) => {
+        if (e.persisted) {
+            document.body.classList.remove('page-exit');
+        }
+    });
 });

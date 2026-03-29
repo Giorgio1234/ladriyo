@@ -32,7 +32,8 @@
       "url": "https://soyladriyo.com/"
     }
     </script>
-    <script defer src="https://analytics.soyladriyo.com/collect" data-website-id="f3fc92a5-1149-4367-aace-cd8fe45765bb"></script>
+    <script defer src="https://analytics.soyladriyo.com/collect"
+        data-website-id="f3fc92a5-1149-4367-aace-cd8fe45765bb"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -174,13 +175,14 @@
     <header class="header" id="header">
         <nav class="nav container" role="navigation" aria-label="Navegación principal">
             <a href="#" class="logo">Ladri<span class="logo-emphasis">YO</span></a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#como-funciona" class="nav-link">Cómo Funciona</a></li>
                 <li><a href="#para-quien" class="nav-link">¿Para quién?</a></li>
                 <li><a href="#producto" class="nav-link">Producto</a></li>
                 <li><a href="/comprar/" class="nav-link nav-link-cta">Comprar</a></li>
             </ul>
-            <button class="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false">
+            <button class="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false"
+                aria-controls="nav-links">
                 <span></span><span></span><span></span>
             </button>
         </nav>
@@ -205,7 +207,7 @@
                 </p>
                 <div class="btn-group">
                     <a href="/comprar/" class="btn btn-primary" id="cta-primary">
-                        <svg class="icon-inline">
+                        <svg class="icon-inline" aria-hidden="true">
                             <use href="#ico-brick" />
                         </svg>
                         Conseguí tu LadriYO →
@@ -325,13 +327,19 @@
             <div class="apps-compat">
                 <p class="apps-compat-label">Compatible con</p>
                 <div class="apps-compat-row">
-                    <a href="https://apps.apple.com/us/app/foqos-tap-to-block/id6736793117" target="_blank" rel="noopener noreferrer" class="app-pill" id="btn-foqos-app">
-                        <svg class="icon-inline"><use href="#ico-apple" /></svg>
+                    <a href="https://apps.apple.com/us/app/foqos-tap-to-block/id6736793117" target="_blank"
+                        rel="noopener noreferrer" class="app-pill" id="btn-foqos-app">
+                        <svg class="icon-inline">
+                            <use href="#ico-apple" />
+                        </svg>
                         <span class="app-pill-name">Foqos</span>
                         <span class="app-pill-sub">iOS · App Store</span>
                     </a>
-                    <a href="https://play.google.com/store/apps/details?id=at.saltyy.switchly&hl=en&pli=1" target="_blank" rel="noopener noreferrer" class="app-pill" id="btn-switchly-app">
-                        <svg class="icon-inline"><use href="#ico-android" /></svg>
+                    <a href="https://play.google.com/store/apps/details?id=at.saltyy.switchly&hl=en&pli=1"
+                        target="_blank" rel="noopener noreferrer" class="app-pill" id="btn-switchly-app">
+                        <svg class="icon-inline">
+                            <use href="#ico-android" />
+                        </svg>
                         <span class="app-pill-name">Switchly</span>
                         <span class="app-pill-sub">Android · Play Store</span>
                     </a>
@@ -623,7 +631,7 @@
                 <p class="hero-tagline" style="margin:var(--space-md) 0">Pegale un ladrillazo a tu adicción</p>
                 <div class="btn-group mt-xl" style="justify-content:center;">
                     <a href="/comprar/" class="btn btn-primary" id="cta-final-comprar">
-                        <svg class="icon-inline">
+                        <svg class="icon-inline" aria-hidden="true">
                             <use href="#ico-brick" />
                         </svg> Conseguí tu LadriYO →
                     </a>
@@ -654,20 +662,23 @@
                             class="footer-link" id="footer-whatsapp">WhatsApp</a></li>
                 </ul>
                 <div class="footer-survey">
-                    <svg class="icon-inline" style="width:16px;height:16px;opacity:0.5;"><use href="#ico-clipboard" /></svg>
-                    <span>¿Querés ayudar a mejorar LadriYO? <a href="/formulario/" class="footer-survey-link" id="footer-formulario-survey">Completá la encuesta →</a></span>
+                    <svg class="icon-inline" style="width:16px;height:16px;opacity:0.5;">
+                        <use href="#ico-clipboard" />
+                    </svg>
+                    <span>¿Querés ayudar a mejorar LadriYO? <a href="/formulario/" class="footer-survey-link"
+                            id="footer-formulario-survey">Completá la encuesta →</a></span>
                 </div>
                 <p class="footer-note">Hecho con <svg class="icon-inline"
-                        style="width:14px;height:14px;color:var(--color-green);">
+                        style="width:14px;height:14px;color:var(--color-green);" aria-hidden="true">
                         <use href="#ico-heart-leaf" />
                     </svg> en Argentina</p>
-                <p class="footer-note">© 2026 LadriYO · Un proyecto de wellbeing digital</p>
+                <p class="footer-note">© 2024 LadriYO · Un proyecto de wellbeing digital</p>
             </div>
         </div>
     </footer>
 
     <button class="scroll-to-top" id="scroll-to-top" aria-label="Volver arriba">
-        <svg class="icon-inline">
+        <svg class="icon-inline" aria-hidden="true">
             <use href="#ico-arrow-up" />
         </svg>
     </button>

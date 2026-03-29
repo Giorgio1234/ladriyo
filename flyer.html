@@ -10,6 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,700;0,800;1,800&display=swap"
     rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
   <style>
     @page {
@@ -29,7 +30,8 @@
       --accent: #D14800;
       --text: #171412;
       --muted: #5A4A45;
-      --dim: #A0908A;
+      --dim: #8E7E78;
+      /* Darkened slightly for better CMYK print contrast */
       --border: rgba(0, 0, 0, 0.1);
       --card-bg: #F2F0EE;
     }
@@ -373,9 +375,10 @@
       gap: 1.5mm;
     }
 
-    .footer-qr img {
-      width: 17mm;
-      height: 17mm;
+    #qrcode canvas,
+    #qrcode img {
+      width: 17mm !important;
+      height: 17mm !important;
       display: block;
       border-radius: 5px;
       border: 1px solid var(--border);
@@ -387,30 +390,6 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--dim);
-    }
-
-    /* ITBA */
-    .footer-itba {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5mm;
-    }
-
-    .footer-itba img {
-      height: 11mm;
-      width: auto;
-      display: block;
-      object-fit: contain;
-    }
-
-    .footer-itba-label {
-      font-size: 5.5pt;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--dim);
-      text-align: center;
     }
   </style>
 </head>
@@ -480,13 +459,25 @@
           <div class="footer-price-sub">ARS · Envío a todo el país</div>
         </div>
         <div class="footer-qr">
-          <img src="qr-code (1).png" alt="QR soyladriyo.com">
+          <div id="qrcode"></div>
           <div class="footer-qr-label">Escaneá</div>
         </div>
       </footer>
 
     </div>
   </div>
+
+  <script>
+    // Generate a razor-sharp vector/canvas QR code for high-quality printing
+    new QRCode(document.getElementById('qrcode'), {
+      text: 'https://soyladriyo.com/',
+      width: 128,
+      height: 128,
+      colorDark: '#171412',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  </script>
 </body>
 
 </html>
