@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>LadriYO — Mini Flyers × 8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+  <style>
+    @page { size: A4 portrait; margin: 0; }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #D14800;
+      --text:   #171412;
+      --muted:  #5A4A45;
+      --dim:    #A0908A;
+      --bg:     #FAFAF8;
+    }
+
+    body {
+      width: 210mm;
+      height: 297mm;
+      background: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── Cut lines ── */
+    .cut-line {
+      position: fixed;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Horizontal: top edge 15mm, then every 66.75mm */
+    .cut-h-0 { top: 15mm;        left: 0; width: 210mm; height: 0; border-top: 1px dashed rgba(0,0,0,0.2); }
+    .cut-h-1 { top: 81.75mm;     left: 0; width: 210mm; height: 0; border-top: 1px dashed rgba(0,0,0,0.2); }
+    .cut-h-2 { top: 148.5mm;     left: 0; width: 210mm; height: 0; border-top: 1px dashed rgba(0,0,0,0.2); }
+    .cut-h-3 { top: 215.25mm;    left: 0; width: 210mm; height: 0; border-top: 1px dashed rgba(0,0,0,0.2); }
+    .cut-h-4 { top: 282mm;       left: 0; width: 210mm; height: 0; border-top: 1px dashed rgba(0,0,0,0.2); }
+
+    /* Vertical: left 15mm, centre 105mm, right 195mm */
+    .cut-v-left   { left: 15mm;  top: 0; height: 297mm; width: 0; border-left: 1px dashed rgba(0,0,0,0.2); }
+    .cut-v-mid    { left: 105mm; top: 0; height: 297mm; width: 0; border-left: 1px dashed rgba(0,0,0,0.2); }
+    .cut-v-right  { left: 195mm; top: 0; height: 297mm; width: 0; border-left: 1px dashed rgba(0,0,0,0.2); }
+
+    /* ── Grid ── */
+    .grid {
+      position: absolute;
+      top: 15mm;
+      left: 15mm;
+      width: 180mm;       /* 2 × 90mm */
+      height: 267mm;      /* 4 × 66.75mm */
+      display: grid;
+      grid-template-columns: 90mm 90mm;
+      grid-template-rows: repeat(4, 66.75mm);
+    }
+
+    /* ── CARD ── */
+    .card {
+      width: 90mm;
+      height: 66.75mm;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      position: relative;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    /* Orange left stripe */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 2.5mm; height: 100%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── LEFT CONTENT ── */
+    .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2.5mm;
+      padding: 5mm 3mm 5mm 6.5mm;
+    }
+
+    .logo {
+      font-size: 8.5pt;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      line-height: 1;
+    }
+    .logo em { color: var(--accent); font-style: normal; }
+
+    .divider {
+      width: 6mm;
+      height: 1.5px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .headline {
+      font-size: 16pt;
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+    .headline em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .tagline {
+      font-size: 7pt;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.45;
+      max-width: 44mm;
+    }
+
+    .url-line {
+      font-size: 6.5pt;
+      font-weight: 700;
+      color: var(--dim);
+      letter-spacing: 0.01em;
+    }
+    .url-line em {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    /* ── RIGHT QR ── */
+    .card-qr {
+      width: 32mm;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2mm;
+      padding: 4mm 4mm 4mm 0;
+    }
+
+    .qr-label {
+      font-size: 4.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      text-align: center;
+    }
+
+    .qrcode {
+      width: 26mm;
+      height: 26mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qrcode canvas,
+    .qrcode img {
+      width: 26mm !important;
+      height: 26mm !important;
+      border-radius: 2px;
+    }
+
+    .qr-sub {
+      font-size: 4.5pt;
+      font-weight: 600;
+      color: var(--dim);
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cut lines -->
+<div class="cut-line cut-h-0"></div>
+<div class="cut-line cut-h-1"></div>
+<div class="cut-line cut-h-2"></div>
+<div class="cut-line cut-h-3"></div>
+<div class="cut-line cut-h-4"></div>
+<div class="cut-line cut-v-left"></div>
+<div class="cut-line cut-v-mid"></div>
+<div class="cut-line cut-v-right"></div>
+
+<div class="grid">
+
+  <!-- ×8 identical cards -->
+  <div class="card">
+    <div class="card-body">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+      <div class="headline">El ladrillo<br>que <em>te cuida.</em></div>
+      <div class="tagline">Bloqueá el teléfono.<br>Recuperá tu tiempo.</div>
+      <div class="url-line">soy<em>ladriyo</em>.com</div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-label">Escaneame</div>
+      <div class="qrcode" id="qr1"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+      <div class="headline">El ladrillo<br>que <em>te cuida.</em></div>
+      <div class="tagline">Bloqueá el teléfono.<br>Recuperá tu tiempo.</div>
+      <div class="url-line">soy<em>ladriyo</em>.com</div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-label">Escaneame</div>
+      <div class="qrcode" id="qr2"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+      <div class="headline">El ladrillo<br>que <em>te cuida.</em></div>
+      <div class="tagline">Bloqueá el teléfono.<br>Recuperá tu tiempo.</div>
+      <div class="url-line">soy<em>ladriyo</em>.com</div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-label">Escaneame</div>
+      <div class="qrcode" id="qr3"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+      <div class="headline">El ladrillo<br>que <em>te cuida.</em></div>
+      <div class="tagline">Bloqueá el teléfono.<br>Recuperá tu tiempo.</div>
+      <div class="url-line">soy<em>ladriyo</em>.com</div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-label">Escaneame</div>
+      <div class="qrcode" id="qr4"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+      <div class="headline">El ladrillo<br>que <em>te cuida.</em></div>
+      <div class="tagline">Bloqueá el teléfono.<br>Recuperá tu tiempo.</div>
+      <div class="url-line">soy<em>ladriyo</em>.com</div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-label">Escaneame</div>
+      <div class="qrcode" id="qr5"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+      <div class="headline">El ladrillo<br>que <em>te cuida.</em></div>
+      <div class="tagline">Bloqueá el teléfono.<br>Recuperá tu tiempo.</div>
+      <div class="url-line">soy<em>ladriyo</em>.com</div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-label">Escaneame</div>
+      <div class="qrcode" id="qr6"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+      <div class="headline">El ladrillo<br>que <em>te cuida.</em></div>
+      <div class="tagline">Bloqueá el teléfono.<br>Recuperá tu tiempo.</div>
+      <div class="url-line">soy<em>ladriyo</em>.com</div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-label">Escaneame</div>
+      <div class="qrcode" id="qr7"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="logo">Ladri<em>YO</em></div>
+      <div class="divider"></div>
+      <div class="headline">El ladrillo<br>que <em>te cuida.</em></div>
+      <div class="tagline">Bloqueá el teléfono.<br>Recuperá tu tiempo.</div>
+      <div class="url-line">soy<em>ladriyo</em>.com</div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-label">Escaneame</div>
+      <div class="qrcode" id="qr8"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const opts = {
+    text: 'https://soyladriyo.com/',
+    width: 98,
+    height: 98,
+    colorDark: '#171412',
+    colorLight: '#FAFAF8',
+    correctLevel: QRCode.CorrectLevel.M
+  };
+  ['qr1','qr2','qr3','qr4','qr5','qr6','qr7','qr8'].forEach(id =>
+    new QRCode(document.getElementById(id), opts)
+  );
+</script>
+
+</body>
+</html>
